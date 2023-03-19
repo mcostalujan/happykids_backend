@@ -3,6 +3,7 @@ package com.happykids.backend.dominio.entidades;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +17,10 @@ import lombok.ToString;
 @ToString
 public class AlumnoCompetenciaID implements Serializable {
 
+    @Column(name = "id_aprog")
     private Long idAprog;
+
+    @Column(name = "id_compe")
     private Long idCompe;
 
     @Override

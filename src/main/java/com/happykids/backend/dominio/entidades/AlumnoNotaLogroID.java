@@ -1,5 +1,6 @@
 package com.happykids.backend.dominio.entidades;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,24 +15,24 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class AlumnoProgresoID implements Serializable {
+public class AlumnoNotaLogroID implements Serializable {
 
+    @Column(name = "id_aprog")
     private Long idAprog;
-    private Long idAlum;
-    private Long idSecci;
-    private Long idArea;
-    private Long idPer;
+
+    @Column(name = "id_logro")
+    private Long idLogro;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AlumnoProgresoID that = (AlumnoProgresoID) o;
-        return Objects.equals(idAlum, that.idAlum) && Objects.equals(idSecci, that.idSecci) && Objects.equals(idArea, that.idArea) && Objects.equals(idPer, that.idPer);
+        AlumnoNotaLogroID that = (AlumnoNotaLogroID) o;
+        return Objects.equals(idAprog, that.idAprog) && Objects.equals(idLogro, that.idLogro);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idAlum, idSecci, idArea, idPer);
+        return Objects.hash(idAprog, idLogro);
     }
 }
