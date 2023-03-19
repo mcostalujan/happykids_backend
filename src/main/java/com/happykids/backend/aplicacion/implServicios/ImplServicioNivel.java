@@ -1,5 +1,5 @@
 package com.happykids.backend.aplicacion.implServicios;
-
-public class ImplServicioNivel {
+import com.happykids.backend.aplicacion.iServicios.*;
+public class ImplServicioNivel implements iServicioNivel {
     
 }

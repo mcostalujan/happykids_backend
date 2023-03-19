@@ -1,5 +1,10 @@
 package com.happykids.backend.aplicacion.iServicios;
+import java.util.List;
 
-public class iServicioNivel {
+import com.happykids.backend.dominio.entidades.Nivel;
+public interface iServicioNivel {
+    List<Nivel> getNiveles();
+    
+    Nivel findNivel(Long Id) ;
     
 }

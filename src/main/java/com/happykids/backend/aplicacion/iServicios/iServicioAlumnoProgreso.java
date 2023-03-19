@@ -1,5 +1,17 @@
 package com.happykids.backend.aplicacion.iServicios;
+import java.util.List;
 
-public class iServicioAlumnoProgreso {
+import com.happykids.backend.dominio.entidades.AlumnoProgreso;
+import com.happykids.backend.presentacion.controladores.AlumnoProgresoDTO;
+public interface iServicioAlumnoProgreso {
+    List<AlumnoProgreso> getAlumnoProgresos();
     
+    AlumnoProgreso findAlumnoProgresoById(Long ID) ;
+
+    AlumnoProgreso addNewAlumnoProgreso(AlumnoProgresoDTO alumnoProgresoDTO);
+
 }
+
+
+
+
