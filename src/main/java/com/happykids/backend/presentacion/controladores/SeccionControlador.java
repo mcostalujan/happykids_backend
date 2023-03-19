@@ -36,6 +36,7 @@ public SeccionControlador(iServicioSeccion servicioSeccion /*, UtilityService ut
     this.ServicioSeccion = servicioSeccion;
     /*this.utilityService = utilityService;*/
 }
+/* 
 @GetMapping("/list")
 public ResponseEntity<List<Seccion>> getAllSeccion() {
     List<Seccion> secciones = ServicioSeccion.getSecciones();
@@ -46,7 +47,7 @@ public ResponseEntity<Seccion>getUser(@PathVariable("Seccion") Long seccion); re
 {
     Seccion seccion = ServicioSeccion.findSeccionById(seccion);
     return new ResponseEntity<>(seccion, OK);
-}
+}*/
 /* 
 @PostMapping("/addSeccion")
 public ResponseEntity<Seccion> register(@RequestBody Seccion seccion)return null 
@@ -55,7 +56,7 @@ public ResponseEntity<Seccion> register(@RequestBody Seccion seccion)return null
 	return new ResponseEntity<>(newSeccion, OK);
 }
 */
-	
+/* 
 @PostMapping("/add")
 public ResponseEntity<Seccion> 
 addNewSeccion
@@ -88,7 +89,7 @@ public ResponseEntity<Seccion> update(@RequestParam("currentNombre") String curr
                 message), httpStatus);
     }*/
 
-
+    */
 /*
  *     private PieDataset buildPiePopCursosDataset() {
         final DefaultPieDataset pieDataset = new DefaultPieDataset();
