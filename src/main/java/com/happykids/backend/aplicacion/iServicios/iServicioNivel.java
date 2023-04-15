@@ -4,8 +4,8 @@ import java.util.List;
 import com.happykids.backend.dominio.dto.NivelDTO;
 import com.happykids.backend.dominio.entidades.Nivel;
 public interface iServicioNivel {
-    List<NivelDTO> getNiveles();
+    List<Nivel> getNiveles();
     
-    NivelDTO findNivel(Long idNivel) ;
+    Nivel findNivel(Long idNivel) ;
     
 }

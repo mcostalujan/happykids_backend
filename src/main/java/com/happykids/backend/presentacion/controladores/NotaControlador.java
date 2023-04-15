@@ -1,6 +1,7 @@
 package com.happykids.backend.presentacion.controladores;
 
 import com.happykids.backend.aplicacion.iServicios.iServicioNota;
+import com.happykids.backend.aplicacion.implServicios.utilitarios.NotaUtilityService;
 import com.happykids.backend.dominio.dto.NotaDTO;
 import com.happykids.backend.dominio.entidades.utilitarios.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,14 @@ public class NotaControlador {
     @Autowired
     private iServicioNota iServicioNota;
 
+    @Autowired
+    private NotaUtilityService notaUtilityService;
+
     @PostMapping("/register")
     public ResponseEntity<NotaDTO> agregarNota(@RequestBody NotaDTO notaDTO) {
-        return new ResponseEntity<>(this.iServicioNota.agregarNota(notaDTO), OK);
+        NotaDTO notaDTOSaved = (NotaDTO) notaUtilityService
+                .convertEntityToDTO(iServicioNota.agregarNota(notaDTO));
+        return new ResponseEntity<>(notaDTOSaved, OK);
     }
 
     @PutMapping("/update")

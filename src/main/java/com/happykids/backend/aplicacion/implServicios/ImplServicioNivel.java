@@ -23,20 +23,13 @@ public class ImplServicioNivel implements iServicioNivel {
     private NivelUtilityService nivelUtilityService;
 
     @Override
-    public List<NivelDTO> getNiveles() {
+    public List<Nivel> getNiveles() {
         log.info("Entrando a {} - getNiveles", this.getClass().getName());
-        List<Nivel> listaNiveles = repositorioNivel.findAll();
-        List<NivelDTO> listaNivelesDTO = new ArrayList<>();
-
-        for (Nivel nivel : listaNiveles) {
-            listaNivelesDTO.add((NivelDTO) nivelUtilityService.convertEntityToDTO(nivel));
-        }
-
-        return listaNivelesDTO;
+        return repositorioNivel.findAll();
     }
 
     @Override
-    public NivelDTO findNivel(Long Id) {
-        return (NivelDTO) nivelUtilityService.convertEntityToDTO(repositorioNivel.findByIdNive(Id));
+    public Nivel findNivel(Long Id) {
+        return repositorioNivel.findByIdNive(Id);
     }
 }

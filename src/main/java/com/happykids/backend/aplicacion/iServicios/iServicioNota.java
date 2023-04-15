@@ -10,7 +10,7 @@ public interface iServicioNota {
     
     NotaDTO findNotaById(Long Id) ;
 
-    NotaDTO agregarNota(NotaDTO notaDTO) ;
+    Nota agregarNota(NotaDTO notaDTO) ;
 
     NotaDTO editarNota(NotaDTO notaDTO) ;
 
