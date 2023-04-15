@@ -12,9 +12,9 @@ public interface iServicioAlumno {
     Alumno addNewAlumno(AlumnoDTO alumnoDTO);
 
     Alumno updateAlumno(AlumnoDTO alumnoDTO) ;
-    
 
-    void deleteAlumno(AlumnoDTO alumnoDTO) ;
+    
+    void deleteAlumno(Long idAlumno) ;
 
 
     /*ByteArrayInputStream exportarPiechartPopCursos(BufferedImage bufferedImage);*/
