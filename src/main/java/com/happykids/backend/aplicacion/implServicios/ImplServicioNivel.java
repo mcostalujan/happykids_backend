@@ -1,7 +1,7 @@
 package com.happykids.backend.aplicacion.implServicios;
 
 import com.happykids.backend.aplicacion.iServicios.*;
-import com.happykids.backend.aplicacion.implServicios.utilitarios.UtilityService;
+import com.happykids.backend.aplicacion.implServicios.utilitarios.NivelUtilityService;
 import com.happykids.backend.dominio.dto.NivelDTO;
 import com.happykids.backend.dominio.entidades.Nivel;
 import com.happykids.backend.persistencia.jpaRepositories.iRepositorioNivel;
@@ -20,7 +20,7 @@ public class ImplServicioNivel implements iServicioNivel {
     private iRepositorioNivel repositorioNivel;
 
     @Autowired
-    private UtilityService utilityService;
+    private NivelUtilityService nivelUtilityService;
 
     @Override
     public List<NivelDTO> getNiveles() {
@@ -29,15 +29,14 @@ public class ImplServicioNivel implements iServicioNivel {
         List<NivelDTO> listaNivelesDTO = new ArrayList<>();
 
         for (Nivel nivel : listaNiveles) {
-            listaNivelesDTO.add(utilityService.convertEntityToDTO(nivel));
+            listaNivelesDTO.add((NivelDTO) nivelUtilityService.convertEntityToDTO(nivel));
         }
 
         return listaNivelesDTO;
-
     }
 
     @Override
     public NivelDTO findNivel(Long Id) {
-        return utilityService.convertEntityToDTO(repositorioNivel.findByIdNive(Id));
+        return (NivelDTO) nivelUtilityService.convertEntityToDTO(repositorioNivel.findByIdNive(Id));
     }
 }
