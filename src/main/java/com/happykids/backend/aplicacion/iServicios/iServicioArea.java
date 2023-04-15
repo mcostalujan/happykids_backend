@@ -1,18 +1,18 @@
 package com.happykids.backend.aplicacion.iServicios;
+
 import java.util.List;
 
 import com.happykids.backend.dominio.dto.AreaDTO;
 import com.happykids.backend.dominio.entidades.Area;
+
 public interface iServicioArea {
-    List<Area> getAreas();
-    
-    Area findAreaById(Long idArea) ;
+    List<AreaDTO> getAreas();
 
-    Area addNewArea
-    (AreaDTO areaDTO);
+    AreaDTO findAreaById(Long idArea);
 
-    Area updateArea 
-    (AreaDTO areaDTO);
+    AreaDTO agregarArea(AreaDTO areaDTO);
+
+    AreaDTO updateArea(AreaDTO areaDTO);
 
 }
 

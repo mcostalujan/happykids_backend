@@ -3,17 +3,18 @@ package com.happykids.backend.aplicacion.iServicios;
 import java.util.List;
 
 import com.happykids.backend.dominio.dto.AlumnoNotaLogroDTO;
+import com.happykids.backend.dominio.dto.NotaDTO;
 import com.happykids.backend.dominio.entidades.Nota;
 public interface iServicioNota {
-    List<Nota> getNotas();
+    List<NotaDTO> getNotas();
     
-    Nota findNotaById(Long Id) ;
+    NotaDTO findNotaById(Long Id) ;
 
-    Nota addNewNota(AlumnoNotaLogroDTO alumnoNotaLogroDTO) ;
+    NotaDTO agregarNota(NotaDTO notaDTO) ;
 
-    Nota updateNota(AlumnoNotaLogroDTO alumnoNotaLogroDTO) ;
+    NotaDTO editarNota(NotaDTO notaDTO) ;
 
-    void deleteNota(AlumnoNotaLogroDTO alumnoNotaLogroDTO);
+    void eliminarNotaPorId(Long idNota);
     
     /*AlumnoCompetencia register(String nombre);*/
 }

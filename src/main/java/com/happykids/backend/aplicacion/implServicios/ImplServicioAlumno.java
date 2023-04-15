@@ -3,9 +3,10 @@ package com.happykids.backend.aplicacion.implServicios;
 import com.happykids.backend.aplicacion.iServicios.iServicioAlumno;
 import com.happykids.backend.dominio.dto.AlumnoDTO;
 import com.happykids.backend.dominio.entidades.Alumno;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class ImplServicioAlumno implements iServicioAlumno {
     @Override
     public List<Alumno> getAlumnos() {
