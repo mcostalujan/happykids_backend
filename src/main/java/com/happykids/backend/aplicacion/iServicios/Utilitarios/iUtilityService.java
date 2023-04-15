@@ -4,7 +4,7 @@ import com.happykids.backend.dominio.dto.NivelDTO;
 import com.happykids.backend.dominio.entidades.Nivel;
 
 public interface iUtilityService {
-    Object convertEntityToDTO(Object dtoObject);
+    Object convertEntityToDTO(Object entityObject);
 
-    Object convertDTOtoEntity(Object entityObject);
+    Object convertDTOtoEntity(Object dtoObject);
 }

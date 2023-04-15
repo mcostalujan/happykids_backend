@@ -15,8 +15,8 @@ public class NivelUtilityService implements iUtilityService {
     private UtilityService utilityService;
 
     @Override
-    public Object convertEntityToDTO(Object dtoObject) {
-        Nivel nivel = (Nivel) dtoObject;
+    public Object convertEntityToDTO(Object entityObject) {
+        Nivel nivel = (Nivel) entityObject;
         log.info("Entrando a {} - convertEntityToDTO", this.getClass().getName());
         return NivelDTO.builder()
                 .idNive(String.valueOf(nivel.getIdNive()))
@@ -30,7 +30,7 @@ public class NivelUtilityService implements iUtilityService {
     }
 
     @Override
-    public Object convertDTOtoEntity(Object entityObject) {
+    public Object convertDTOtoEntity(Object dtoObject) {
         return null;
     }
 }
