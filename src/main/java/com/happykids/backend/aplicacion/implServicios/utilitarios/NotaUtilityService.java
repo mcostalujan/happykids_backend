@@ -37,12 +37,14 @@ public class NotaUtilityService implements iUtilityService {
                 .fecModiNota(utilityService.convertDateToString(nota.getFecModiNota()))
                 .build();
     }
+
     @Override
     public Object convertDTOtoEntity(Object dtoObject) {
         NotaDTO notaDTO = (NotaDTO) dtoObject;
 
         log.info("Entrando a {} - convertDTOtoEntity", this.getClass().getName());
         return Nota.builder()
+                .idNota(Long.valueOf(notaDTO.getIdNota()))
                 .nivel(implServicioNivel.findNivel(Long.valueOf(notaDTO.getIdNivel())))
                 .codExpNota(notaDTO.getCodExpNota())
                 .rangInicNota(Integer.valueOf(notaDTO.getRangInicNota()))

@@ -1,10 +1,7 @@
 package com.happykids.backend.dominio.entidades;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
@@ -15,6 +12,7 @@ import java.util.List;
 @ToString
 @Entity(name = "Grado")
 @Table(name = "grado")
+@Builder
 public class Grado {
 
     @Id
