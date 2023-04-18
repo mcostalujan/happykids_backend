@@ -6,12 +6,14 @@ import com.happykids.backend.dominio.dto.AlumnoNotaLogroDTO;
 import com.happykids.backend.dominio.dto.NotaDTO;
 import com.happykids.backend.dominio.entidades.Nota;
 import com.happykids.backend.persistencia.jpaRepositories.iRepositorioNota;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class ImplServicioNota implements iServicioNota {
 
     @Autowired
@@ -21,12 +23,15 @@ public class ImplServicioNota implements iServicioNota {
     private iRepositorioNota iRepositorioNota;
 
     @Override
-    public List<NotaDTO> getNotas() {
-        return null;
+    public List<Nota> getNotas() {
+        log.info("Entrando a {} - getNotas", this.getClass().getName());
+        return iRepositorioNota.findAll();
     }
 
     @Override
-    public NotaDTO findNotaById(Long Id) {
+    public Nota findNotaById(Long Id) {
+        if (Id != null)
+            return iRepositorioNota.findNotaByIdNota(Id);
         return null;
     }
 
@@ -39,12 +44,25 @@ public class ImplServicioNota implements iServicioNota {
     }
 
     @Override
-    public NotaDTO editarNota(NotaDTO notaDTO) {
+    public Nota editarNota(NotaDTO notaDTO) {
+        if (notaDTO != null && notaDTO.getIdNota() != null) {
+            if (iRepositorioNota.findNotaByIdNota(Long.valueOf(notaDTO.getIdNota())) != null) {
+                return iRepositorioNota
+                        .save((Nota) notaUtilityService
+                                .convertDTOtoEntity(notaDTO));
+            }
+        }
         return null;
     }
 
     @Override
-    public void eliminarNotaPorId(Long idNota) {
-
+    public boolean eliminarNotaPorId(Long idNota) {
+        if (idNota != null) {
+            if (iRepositorioNota.findNotaByIdNota(Long.valueOf(idNota)) != null) {
+                iRepositorioNota.deleteById(Long.valueOf(idNota));
+                return true;
+            }
+        }
+        return false;
     }
 }
