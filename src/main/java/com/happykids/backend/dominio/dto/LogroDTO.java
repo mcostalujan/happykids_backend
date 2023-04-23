@@ -4,9 +4,13 @@ import java.util.Date;
 
 import com.happykids.backend.dominio.entidades.Competencia;
 
-import lombok.Builder;
+import lombok.*;
 
 @Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class LogroDTO {
 
     private String idLogro;

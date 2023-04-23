@@ -10,36 +10,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class PeriodoDTO {
-    
-
-        private String idPer;
-    
-        
-        private String codPer;
-    
-        
-        private String periEduDescPer;
-    
-        
-        private String fecIniActiPer;
-    
-       
-        private String fecFinActiPer;
-    
-        
-        private String yearPer;
-    
-        
-        private String usuCreaPer;
-    
-       
-        private String fecCreaPer;
-    
-       
-        private String usuModiPer;
-    
-        
-        private String fecModiPer;
-
-    
+    private String idPer;
+    private String codPer;
+    private String periEduDescPer;
+    private String fecIniActiPer;
+    private String fecFinActiPer;
+    private String yearPer;
+    private String usuCreaPer;
+    private String fecCreaPer;
+    private String usuModiPer;
+    private String fecModiPer;
 }

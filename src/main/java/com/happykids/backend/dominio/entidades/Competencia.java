@@ -1,10 +1,17 @@
 package com.happykids.backend.dominio.entidades;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.Date;
+
 @Entity(name = "Competencia")
 @Table(name = "competencia")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Builder
 public class Competencia {
 
     @Id

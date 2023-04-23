@@ -12,7 +12,5 @@ public interface iServicioPeriodo {
 
     Periodo editarPeriodo(PeriodoDTO periodoDTO) ;
 
-    void eliminarPeriodoPorId(PeriodoDTO periodoDTO);
-    
-    /*AlumnoCompetencia register(String nombre);*/
+    boolean eliminarPeriodoPorId(Long idPeriodo);
 }

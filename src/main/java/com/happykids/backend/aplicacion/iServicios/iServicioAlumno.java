@@ -13,10 +13,7 @@ public interface iServicioAlumno {
 
     Alumno editarAlumno(AlumnoDTO alumnoDTO) ;
     
-    void eliminarAlumnoPorId(Long idAlumno) ;
-
-
-    /*ByteArrayInputStream exportarPiechartPopCursos(BufferedImage bufferedImage);*/
+    boolean eliminarAlumnoPorId(Long idAlumno) ;
 }
 
 

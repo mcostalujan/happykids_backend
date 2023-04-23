@@ -12,6 +12,6 @@ public interface iServicioLogro {
 
     Logro agregarLogro(LogroDTO logroDTO) ;
 
-    void eliminarLogroPorId(LogroDTO logroDTO);
+    boolean eliminarLogroPorId(Long idLogro);
 
 }
