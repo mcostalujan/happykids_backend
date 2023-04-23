@@ -1,90 +1,73 @@
 package com.happykids.backend.presentacion.controladores;
 
+import com.happykids.backend.aplicacion.iServicios.iServicioSeccion;
+import com.happykids.backend.aplicacion.implServicios.utilitarios.SeccionUtilityService;
+import com.happykids.backend.dominio.dto.SeccionDTO;
+import com.happykids.backend.dominio.entidades.utilitarios.HttpResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.springframework.http.HttpStatus.OK;
+
+@RequestMapping("/seccion")
+@RestController
 public class SeccionControlador {
 
-    //    public static final String SECCION_DELETED_SUCCESSFULLY = "Seccion eliminado exitosamente";
-//    private iServicioSeccion ServicioSeccion;
-//
-///*@Resource(name = "utilityServiceV1")*/
-///*private UtilityService utilityService;*/
-//
-//@Autowired
-//public SeccionControlador(iServicioSeccion iServicioSeccion /*, UtilityService utilityService */) {
-//    this.ServicioSeccion = servicioSeccion;
-//    /*this.utilityService = utilityService;*/
-//}
-///*
-//@GetMapping("/list")
-//public ResponseEntity<List<Seccion>> getAllSeccion() {
-//    List<Seccion> secciones = ServicioSeccion.getSecciones();
-//    return new ResponseEntity<>(secciones, OK);
-//}
-//@GetMapping("/find/{Seccion}")
-//public ResponseEntity<Seccion>getUser(@PathVariable("Seccion") Long seccion); return null
-//{
-//    Seccion seccion = ServicioSeccion.findSeccionById(seccion);
-//    return new ResponseEntity<>(seccion, OK);
-//}*/
-///*
-//@PostMapping("/addSeccion")
-//public ResponseEntity<Seccion> register(@RequestBody Seccion seccion)return null
-//{
-//    Seccion newSeccion = ServicioSeccion.register(seccion.getNombre());
-//	return new ResponseEntity<>(newSeccion, OK);
-//}
-//*/
-///*
-//@PostMapping("/add")
-//public ResponseEntity<Seccion>
-//addNewSeccion
-//(
-//@RequestParam("nombre") String nombre,
-//@RequestParam("idUser")String idUser
-//)
-//return null
-//{
-//    Seccion newSeccion = ServicioSeccion.addNewSeccion(null);
-//    return new ResponseEntity<>(newSeccion, OK);
-//}
-//
-//@PostMapping("/update")
-//public ResponseEntity<Seccion> update(@RequestParam("currentNombre") String currentNombre, @RequestParam("nombre") String nombre, @RequestParam("idUser")String idUser)
-//{
-//    Seccion updatedSeccion = iServicioSeccion.updateSeccion(currentNombre, nombre,idUser);
-//        return new ResponseEntity<>(updatedSeccion, OK);
-//}
-//
-//
-//	@DeleteMapping("/delete/{nombre}")
-//    public ResponseEntity<HttpResponse> deleteCurso(@PathVariable("nombre") String nombre) throws UtilityException {
-//        cursoService.deleteCurso(nombre);
-//        return response(OK, CURSO_DELETED_SUCCESSFULLY);
-//    }
-//	/*
-//	private ResponseEntity<HttpResponse> response(HttpStatus httpStatus, String message) {
-//        return new ResponseEntity<>(new HttpResponse(httpStatus.value(), httpStatus, httpStatus.getReasonPhrase().toUpperCase(),
-//                message), httpStatus);
-//    }*/
-//
-//    */
-///*
-// *     private PieDataset buildPiePopCursosDataset() {
-//        final DefaultPieDataset pieDataset = new DefaultPieDataset();
-//        this.cursoService.getCursos()
-//                .forEach((curso) -> pieDataset.setValue(curso.getNombre(),
-//                        curso.getPorcentajePopularidad()));
-//
-//        return pieDataset;
-//    }
-//
-//    private void writeChartAsPNGImage(final JFreeChart chart, final int width, final int height,
-//                                      HttpServletResponse response) throws IOException {
-//        final BufferedImage bufferedImage = chart.createBufferedImage(width, height);
-//        response.setContentType(MediaType.IMAGE_PNG_VALUE);
-//        ChartUtils.writeBufferedImageAsPNG(response.getOutputStream(), bufferedImage);
-//    }
-//
-// */
-//
+    public static final String SECCION_ELIMINADA_CORRECTAMENTE = "Seccion eliminada.";
+
+    @Autowired
+    private iServicioSeccion iServicioSeccion;
+
+    @Autowired
+    private SeccionUtilityService seccionUtilityService;
+
+    @PostMapping("/register")
+    public ResponseEntity<SeccionDTO> agregarSeccion(@RequestBody SeccionDTO seccionDTO) {
+        SeccionDTO seccionDTOSaved = (SeccionDTO) seccionUtilityService
+                .convertEntityToDTO(iServicioSeccion.addNewSeccion(seccionDTO));
+        return new ResponseEntity<>(seccionDTOSaved, OK);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<SeccionDTO> editarSeccion(@RequestBody SeccionDTO seccionDTO) {
+        SeccionDTO seccionUpdated = (SeccionDTO) seccionUtilityService
+                .convertEntityToDTO(iServicioSeccion.updateSeccion(seccionDTO));
+        return new ResponseEntity<>(seccionUpdated, OK);
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<List<Object>> listarSecciones() {
+        List<Object> seccionesDTO = iServicioSeccion.getSecciones()
+                .stream()
+                .map(seccionUtilityService::convertEntityToDTO)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(seccionesDTO, OK);
+    }
+
+    @GetMapping("/find/{idSeccion}")
+    public ResponseEntity<SeccionDTO> buscarSeccionPorID(@PathVariable("idSeccion") Long idSeccion) {
+        SeccionDTO seccionDTO = (SeccionDTO) seccionUtilityService
+                .convertEntityToDTO(iServicioSeccion.findSeccionById(idSeccion));
+        return new ResponseEntity<>(seccionDTO, OK);
+    }
+
+    @DeleteMapping("/delete/{idSeccion}")
+    //@PreAuthorize("hasAnyAuthority('user:delete')")
+    public ResponseEntity<HttpResponse> eliminarSeccionPorId(@PathVariable("idSeccion") Long idSeccion) {
+        if (this.iServicioSeccion.deleteSeccion(idSeccion))
+        return response(OK, SECCION_ELIMINADA_CORRECTAMENTE);
+        return response(HttpStatus.OK, "ERROR AL ELMINAR SECCION.");
+    }
+
+    private ResponseEntity<HttpResponse> response(HttpStatus httpStatus, String message) {
+        return new ResponseEntity<>(
+                new HttpResponse(httpStatus.value(), httpStatus, httpStatus.getReasonPhrase().toUpperCase(), message),
+                httpStatus);
+    }
 
 }

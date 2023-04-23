@@ -6,13 +6,13 @@ import com.happykids.backend.dominio.dto.AreaDTO;
 import com.happykids.backend.dominio.entidades.Area;
 
 public interface iServicioArea {
-    List<AreaDTO> getAreas();
+    List<Area> getAreas();
 
-    AreaDTO findAreaById(Long idArea);
+    Area findAreaById(Long idArea);
 
-    AreaDTO agregarArea(AreaDTO areaDTO);
+    Area agregarArea(AreaDTO areaDTO);
 
-    AreaDTO updateArea(AreaDTO areaDTO);
+    Area updateArea(AreaDTO areaDTO);
 
 }
 
