@@ -7,6 +7,8 @@ import com.happykids.backend.dominio.dto.NotaDTO;
 import com.happykids.backend.dominio.entidades.Nivel;
 import com.happykids.backend.dominio.entidades.Nota;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,12 +39,14 @@ public class NotaUtilityService implements iUtilityService {
                 .fecModiNota(utilityService.convertDateToString(nota.getFecModiNota()))
                 .build();
     }
+
     @Override
     public Object convertDTOtoEntity(Object dtoObject) {
         NotaDTO notaDTO = (NotaDTO) dtoObject;
 
         log.info("Entrando a {} - convertDTOtoEntity", this.getClass().getName());
         return Nota.builder()
+                .idNota(NumberUtils.toLong(notaDTO.getIdNota()))
                 .nivel(implServicioNivel.findNivel(Long.valueOf(notaDTO.getIdNivel())))
                 .codExpNota(notaDTO.getCodExpNota())
                 .rangInicNota(Integer.valueOf(notaDTO.getRangInicNota()))

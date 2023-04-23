@@ -6,15 +6,15 @@ import com.happykids.backend.dominio.dto.AlumnoNotaLogroDTO;
 import com.happykids.backend.dominio.dto.NotaDTO;
 import com.happykids.backend.dominio.entidades.Nota;
 public interface iServicioNota {
-    List<NotaDTO> getNotas();
+    List<Nota> getNotas();
     
-    NotaDTO findNotaById(Long Id) ;
+    Nota findNotaById(Long Id) ;
 
     Nota agregarNota(NotaDTO notaDTO) ;
 
-    NotaDTO editarNota(NotaDTO notaDTO) ;
+    Nota editarNota(NotaDTO notaDTO) ;
 
-    void eliminarNotaPorId(Long idNota);
+    boolean eliminarNotaPorId(Long idNota);
     
     /*AlumnoCompetencia register(String nombre);*/
 }

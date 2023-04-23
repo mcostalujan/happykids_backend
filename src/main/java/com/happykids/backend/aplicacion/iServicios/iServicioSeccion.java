@@ -12,7 +12,7 @@ public interface iServicioSeccion {
 
     Seccion updateSeccion(SeccionDTO seccionDTO) ;
 
-    void deleteSeccion(SeccionDTO seccionDTO);
+    boolean deleteSeccion(Long idSeccion);
     
     /*AlumnoCompetencia register(String nombre);*/
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpStatus.OK;
 
@@ -35,27 +36,33 @@ public class NotaControlador {
 
     @PutMapping("/update")
     public ResponseEntity<NotaDTO> editarNota(@RequestBody NotaDTO notaDTO) {
-        NotaDTO notaUpdated = this.iServicioNota.editarNota(notaDTO);
+        NotaDTO notaUpdated = (NotaDTO) notaUtilityService
+                .convertEntityToDTO(iServicioNota.editarNota(notaDTO));
         return new ResponseEntity<>(notaUpdated, OK);
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<NotaDTO>> listarNiveles() {
-        List<NotaDTO> notasDTO = iServicioNota.getNotas();
+    public ResponseEntity<List<Object>> listarNotas() {
+        List<Object> notasDTO = iServicioNota.getNotas()
+                .stream()
+                .map(notaUtilityService::convertEntityToDTO)
+                .collect(Collectors.toList());
         return new ResponseEntity<>(notasDTO, OK);
     }
 
     @GetMapping("/find/{idNota}")
     public ResponseEntity<NotaDTO> buscarNotaPorID(@PathVariable("idNota") Long idNota) {
-        NotaDTO notaDTO = iServicioNota.findNotaById(idNota);
+        NotaDTO notaDTO = (NotaDTO) notaUtilityService
+                .convertEntityToDTO(iServicioNota.findNotaById(idNota));
         return new ResponseEntity<>(notaDTO, OK);
     }
 
     @DeleteMapping("/delete/{idNota}")
     //@PreAuthorize("hasAnyAuthority('user:delete')")
     public ResponseEntity<HttpResponse> eliminarNotaPorId(@PathVariable("idNota") Long idNota) {
-        this.iServicioNota.eliminarNotaPorId(idNota);
-        return response(OK, NOTA_ELIMINADA_CORRECTAMENTE);
+        if(this.iServicioNota.eliminarNotaPorId(idNota))
+            return response(OK, NOTA_ELIMINADA_CORRECTAMENTE);
+        return response(HttpStatus.OK, "ERROR AL ELMINAR NOTA.");
     }
 
     private ResponseEntity<HttpResponse> response(HttpStatus httpStatus, String message) {

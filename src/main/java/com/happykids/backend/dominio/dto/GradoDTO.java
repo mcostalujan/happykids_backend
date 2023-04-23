@@ -1,12 +1,14 @@
 package com.happykids.backend.dominio.dto;
 
-import com.happykids.backend.dominio.entidades.Nivel;
-import com.happykids.backend.dominio.entidades.Seccion;
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.Date;
-import java.util.List;
-
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class GradoDTO {
     private String idGrado;
     private String idNivel;

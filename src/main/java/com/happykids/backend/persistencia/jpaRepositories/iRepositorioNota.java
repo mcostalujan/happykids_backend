@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface iRepositorioNota extends JpaRepository<Nota, Long> {
+
+    Nota findNotaByIdNota(Long idNota);
+
 }
