@@ -16,5 +16,3 @@ public interface iServicioAlumnoCompetencia {
     
     /*AlumnoCompetencia register(String nombre);*/
 }
-
-

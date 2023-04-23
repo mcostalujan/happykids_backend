@@ -6,12 +6,12 @@ import com.happykids.backend.dominio.entidades.Logro;
 public interface iServicioLogro {
     List<Logro> getLogros();
     
-    Logro findLogroById(Long Id) ;
+    Logro findLogroById(Long idLogro) ;
 
-    Logro addNewLogro(LogroDTO logroDTO) ;
+    Logro editarLogro(LogroDTO logroDTO) ;
 
-    Logro updateLogro(LogroDTO logroDTO) ;
+    Logro agregarLogro(LogroDTO logroDTO) ;
 
-    void deleteLogro(LogroDTO logroDTO);
+    void eliminarLogroPorId(LogroDTO logroDTO);
 
 }

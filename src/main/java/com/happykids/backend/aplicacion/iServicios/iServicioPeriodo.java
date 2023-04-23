@@ -6,13 +6,13 @@ import com.happykids.backend.dominio.entidades.Periodo;
 public interface iServicioPeriodo {
     List<Periodo> getPeriodos();
     
-    Periodo findPeriodosById(Long Id) ;
+    Periodo buscarPeriodoPorID (Long Id) ;
 
-    Periodo addNewPeriodo(PeriodoDTO periodoDTO) ;
+    Periodo agregarPeriodo(PeriodoDTO periodoDTO) ;
 
-    Periodo updatePeriodo(PeriodoDTO periodoDTO) ;
+    Periodo editarPeriodo(PeriodoDTO periodoDTO) ;
 
-    void deletePeriodo(PeriodoDTO periodoDTO);
+    void eliminarPeriodoPorId(PeriodoDTO periodoDTO);
     
     /*AlumnoCompetencia register(String nombre);*/
 }

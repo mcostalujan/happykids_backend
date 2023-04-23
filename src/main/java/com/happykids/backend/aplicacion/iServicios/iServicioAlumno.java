@@ -7,14 +7,13 @@ public interface iServicioAlumno {
 
     List<Alumno> getAlumnos();
     
-    Alumno findAlumnoByNombre(Long idAlum) ;
+    Alumno findAlumnoById(Long idAlum) ;
 
-    Alumno addNewAlumno(AlumnoDTO alumnoDTO);
+    Alumno agregarAlumno(AlumnoDTO alumnoDTO);
 
-    Alumno updateAlumno(AlumnoDTO alumnoDTO) ;
-
+    Alumno editarAlumno(AlumnoDTO alumnoDTO) ;
     
-    void deleteAlumno(Long idAlumno) ;
+    void eliminarAlumnoPorId(Long idAlumno) ;
 
 
     /*ByteArrayInputStream exportarPiechartPopCursos(BufferedImage bufferedImage);*/

@@ -9,11 +9,9 @@ public interface iServicioCompetencia {
     
     Competencia findCompetenciaById(Long Id) ;
 
-    Competencia addNewCompetencia
-    (CompetenciaDTO competenciaDTO) ;
+    Competencia agregarCompetencia(CompetenciaDTO competenciaDTO) ;
 
-    void deleteCompetencia   
-    (CompetenciaDTO competenciaDTO) ;
+    void deleteCompetencia(CompetenciaDTO competenciaDTO) ;
     
 }
 

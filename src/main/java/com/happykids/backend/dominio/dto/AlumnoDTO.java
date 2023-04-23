@@ -2,6 +2,8 @@ package com.happykids.backend.dominio.dto;
 
 import java.util.Date;
 
+import lombok.Builder;
+@Builder
 public class AlumnoDTO {
 
     private String idAlum;
