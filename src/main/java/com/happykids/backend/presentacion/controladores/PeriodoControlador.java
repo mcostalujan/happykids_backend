@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.springframework.http.HttpStatus.OK;
 
 @RequestMapping("/periodo")
@@ -31,6 +34,15 @@ public class PeriodoControlador {
         return new ResponseEntity<>(periodoDTOSaved, OK);
     }
 
+    @GetMapping("/list")
+    public ResponseEntity<List<Object>> listarPeriodos() {
+        List<Object> periodosDTO = iServicioPeriodo.getPeriodos()
+                .stream()
+                .map(periodoUtilityService::convertEntityToDTO)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(periodosDTO, OK);
+    }
+
     @PutMapping("/update")
     public ResponseEntity<PeriodoDTO> editarPeriodo(@RequestBody PeriodoDTO periodoDTO) {
         PeriodoDTO periodoUpdated = (PeriodoDTO) periodoUtilityService.convertEntityToDTO(
@@ -48,8 +60,9 @@ public class PeriodoControlador {
     @DeleteMapping("/delete/{idPeriodo}")
     // //@PreAuthorize("hasAnyAuthority('user:delete')")
      public ResponseEntity<HttpResponse> eliminarPeriodoPorId(@PathVariable("idPeriodo") Long idPeriodo) {
-         this.iServicioPeriodo.eliminarPeriodoPorId(idPeriodo);
-         return response(OK, PERIODO_ELIMINADO_CORRECTAMENTE);
+        if(this.iServicioPeriodo.eliminarPeriodoPorId(idPeriodo))
+            return response(OK, PERIODO_ELIMINADO_CORRECTAMENTE);
+        return response(HttpStatus.OK, "ERROR AL ELMINAR PERIODO.");
      }
 
     private ResponseEntity<HttpResponse> response(HttpStatus httpStatus, String message) {

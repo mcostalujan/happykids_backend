@@ -27,11 +27,14 @@ public class PeriodoUtilityService implements iUtilityService {
         return PeriodoDTO.builder()
                 .idPer(String.valueOf(periodo.getIdPer()))
                 .codPer(periodo.getCodPer())
+                .yearPer(periodo.getYearPer())
                 .periEduDescPer(periodo.getPeriEduDescPer())
                 .fecIniActiPer(utilityService.convertDateToString(periodo.getFecFinActiPer()))
-                .usuCreaPer(periodo.getUsuCreaPer())
                 .fecFinActiPer(utilityService.convertDateToString(periodo.getFecFinActiPer()))
+                .usuCreaPer(periodo.getUsuCreaPer())
+                .fecCreaPer(utilityService.convertDateToString(periodo.getFecCreaPer()))
                 .usuModiPer(periodo.getUsuModiPer())
+                .fecModiPer(utilityService.convertDateToString(periodo.getFecModiPer()))
                 .build();
     }
 
@@ -43,11 +46,14 @@ public class PeriodoUtilityService implements iUtilityService {
         return Periodo.builder()
                 .idPer(NumberUtils.toLong(periodoDTO.getIdPer()))
                 .codPer(periodoDTO.getCodPer())
+                .yearPer(periodoDTO.getYearPer())
                 .periEduDescPer(periodoDTO.getPeriEduDescPer())
                 .fecIniActiPer(utilityService.convertStringToDate(periodoDTO.getFecIniActiPer()))
+                .fecFinActiPer(utilityService.convertStringToDate(periodoDTO.getFecFinActiPer()))
                 .usuCreaPer(periodoDTO.getUsuCreaPer())
-                .fecModiPer(utilityService.convertStringToDate(periodoDTO.getFecModiPer()))
+                .fecCreaPer(utilityService.convertStringToDate(periodoDTO.getFecCreaPer()))
                 .usuModiPer(periodoDTO.getUsuModiPer())
+                .fecModiPer(utilityService.convertStringToDate(periodoDTO.getFecModiPer()))
                 .build();
     }
 }

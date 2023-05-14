@@ -32,7 +32,7 @@ public class Periodo {
     private Date fecFinActiPer;
 
     @Column(name = "year_per")
-    private Date yearPer;
+    private String yearPer;
 
     @Column(name = "usu_crea_per")
     private String usuCreaPer;
