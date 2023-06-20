@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
-@RestController
+
 @Builder
 @Data
 @AllArgsConstructor
@@ -21,9 +21,9 @@ public class AlumnoProgresoDTO {
 
     private String idAprog;
     private String idAlumno;
-    private String idSeccion;
-    private String idArea;
-    private String idPeriodo;
+//    private String idSeccion;
+//    private String idArea;
+//    private String idPeriodo;
     private String indAntiAlumprog;
     private String usuCreaAlumprog;
     private String fecCreaAlumprog;

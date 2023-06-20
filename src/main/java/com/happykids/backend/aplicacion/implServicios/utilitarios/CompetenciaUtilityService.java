@@ -1,6 +1,7 @@
 package com.happykids.backend.aplicacion.implServicios.utilitarios;
 
 import com.happykids.backend.aplicacion.iServicios.Utilitarios.iUtilityService;
+import com.happykids.backend.aplicacion.implServicios.ImplServicioArea;
 import com.happykids.backend.aplicacion.implServicios.ImplServicioNivel;
 import com.happykids.backend.dominio.dto.CompetenciaDTO;
 import com.happykids.backend.dominio.entidades.Competencia;
@@ -19,13 +20,17 @@ public class CompetenciaUtilityService implements iUtilityService {
     @Autowired
     private ImplServicioNivel implServicioNivel;
 
+    @Autowired
+    private ImplServicioArea implServicioArea;
+
     @Override
     public Object convertEntityToDTO(Object entityObject) {
         Competencia competencia = (Competencia) entityObject;
         log.info("Entrando a {} - convertEntityToDTO", this.getClass().getName());
         return CompetenciaDTO.builder()
                 .idCompe(String.valueOf(competencia.getIdCompe()))
-                .idNivel(String.valueOf(competencia.getNivel().getIdNive()))
+//                .idNivel(String.valueOf(competencia.getNivel().getIdNive()))
+                .idArea(String.valueOf(competencia.getArea().getIdArea()))
                 .codigoCompe(competencia.getCodigoCompe())
                 .descCompe(competencia.getDescCompe())
                 .indActiCompe(String.valueOf(competencia.getIndActiCompe()))
@@ -44,7 +49,8 @@ public class CompetenciaUtilityService implements iUtilityService {
         log.info("Entrando a {} - convertDTOtoEntity", this.getClass().getName());
         return Competencia.builder()
                 .idCompe(NumberUtils.toLong(competenciaDTO.getIdCompe()))
-                .nivel(implServicioNivel.findNivel(Long.valueOf(competenciaDTO.getIdNivel())))
+//                .nivel(implServicioNivel.findNivel(Long.valueOf(competenciaDTO.getIdNivel())))
+                .area(implServicioArea.findAreaById(NumberUtils.toLong(competenciaDTO.getIdArea())))
                 .descCompe(competenciaDTO.getDescCompe())
                 .codigoCompe(competenciaDTO.getCodigoCompe())
                 .indActiCompe(Boolean.valueOf(competenciaDTO.getIndActiCompe()))

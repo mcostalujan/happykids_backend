@@ -28,38 +28,38 @@ public class AlumnoProgreso {
     )
     private Alumno alumno;
 
-    @OneToOne(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
-    )
-    @JoinColumn(
-            name = "secci_id_secci",
-            referencedColumnName = "id_secci",
-            foreignKey = @ForeignKey(name = "aprog_secci_id_secci_fk")
-    )
-    private Seccion seccion;
+//    @OneToOne(
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.EAGER
+//    )
+//    @JoinColumn(
+//            name = "secci_id_secci",
+//            referencedColumnName = "id_secci",
+//            foreignKey = @ForeignKey(name = "aprog_secci_id_secci_fk")
+//    )
+//    private Seccion seccion;
 
-    @OneToOne(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
-    )
-    @JoinColumn(
-            name = "area_id_area",
-            referencedColumnName = "id_area",
-            foreignKey = @ForeignKey(name = "aprog_area_id_area_fk")
-    )
-    private Area area;
+//    @OneToOne(
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.EAGER
+//    )
+//    @JoinColumn(
+//            name = "area_id_area",
+//            referencedColumnName = "id_area",
+//            foreignKey = @ForeignKey(name = "aprog_area_id_area_fk")
+//    )
+//    private Area area;
 
-    @OneToOne(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
-    )
-    @JoinColumn(
-            name = "per_id_per",
-            referencedColumnName = "id_per",
-            foreignKey = @ForeignKey(name = "aprog_per_id_per_fk")
-    )
-    private Periodo periodo;
+//    @OneToOne(
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.EAGER
+//    )
+//    @JoinColumn(
+//            name = "per_id_per",
+//            referencedColumnName = "id_per",
+//            foreignKey = @ForeignKey(name = "aprog_per_id_per_fk")
+//    )
+//    private Periodo periodo;
 
 
     @Column(name = "ind_acti_alumprog")
@@ -78,5 +78,13 @@ public class AlumnoProgreso {
     private Date fecModiAlmprog;
 
 
+    @ManyToOne
+    @JoinColumn(
+            name = "clase_id_clase",
+            nullable = false,
+            referencedColumnName = "id_clase",
+            foreignKey = @ForeignKey(name = "aprog_clase_id_clase_fk")
+    )
+    private Clase clase;
 }
 

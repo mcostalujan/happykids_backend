@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CompetenciaDTO {
     private String idCompe;
-    private String idNivel;
+//    private String idNivel;
     private String codigoCompe;
     private String descCompe;
     private String indActiCompe;
@@ -20,4 +20,5 @@ public class CompetenciaDTO {
     private String fecCreaCompe;
     private String usuModiCompe;
     private String fecModiCompe;
+    private String idArea;
 }

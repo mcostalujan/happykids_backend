@@ -19,14 +19,14 @@ public class Competencia {
     @Column(name = "id_compe", updatable = false)
     private Long idCompe;
 
-    @ManyToOne
-    @JoinColumn(
-            name = "nive_id_nive",
-            nullable = false,
-            referencedColumnName = "id_nive",
-            foreignKey = @ForeignKey(name = "compe_nive_id_nive_fk")
-    )
-    private Nivel nivel;
+//    @ManyToOne
+//    @JoinColumn(
+//            name = "nive_id_nive",
+//            nullable = false,
+//            referencedColumnName = "id_nive",
+//            foreignKey = @ForeignKey(name = "compe_nive_id_nive_fk")
+//    )
+//    private Nivel nivel;
 
     @Column(name = "codigo_compe")
     private String codigoCompe;
@@ -52,4 +52,12 @@ public class Competencia {
     @Column(name = "fec_modi_compe")
     private Date fecModiCompe;
 
+
+    @ManyToOne
+    @JoinColumn(
+            name = "area_id_area",
+            referencedColumnName = "id_area",
+            foreignKey = @ForeignKey(name = "competencia_area_id_area_fk")
+    )
+    private Area area;
 }
