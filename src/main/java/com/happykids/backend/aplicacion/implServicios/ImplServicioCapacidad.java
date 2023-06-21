@@ -33,9 +33,9 @@ public class ImplServicioCapacidad implements iServicioCapacidad {
     }
 
     @Override
-    public Capacidad findCapacidadById(Long idcapacidad) {
-        if (idcapacidad != null)
-            return iRepositoriocapacidad.findCapacidadByIdCapacidad(idcapacidad);
+    public Capacidad findCapacidadById(Long idCapacidad) {
+        if (idCapacidad != null)
+            return iRepositoriocapacidad.findCapacidadByIdCapacidad(idCapacidad);
         return null;
     }
 
@@ -62,10 +62,10 @@ public class ImplServicioCapacidad implements iServicioCapacidad {
     }
 
     @Override
-    public boolean eliminarCapacidadPorId(Long idcapacidad) {
-        if (idcapacidad != null) {
-            if (iRepositoriocapacidad.findCapacidadByIdCapacidad(Long.valueOf(idcapacidad)) != null) {
-                iRepositoriocapacidad.deleteById(Long.valueOf(idcapacidad));
+    public boolean eliminarCapacidadPorId(Long idCapacidad) {
+        if (idCapacidad != null) {
+            if (iRepositoriocapacidad.findCapacidadByIdCapacidad(Long.valueOf(idCapacidad)) != null) {
+                iRepositoriocapacidad.deleteById(Long.valueOf(idCapacidad));
                 return true;
             }
         }

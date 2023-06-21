@@ -20,48 +20,48 @@ import static org.springframework.http.HttpStatus.OK;
 @Slf4j
 @RestController
 public class CapacidadControlador {
-    public static final String CAPACIDAD_ELIMINADO_CORRECTAMENTE = "Capacidad eliminado.";
+    public static final String CAPACIDAD_ELIMINADO_CORRECTAMENTE = "Capacidad eliminada.";
 
     @Autowired
-    private iServicioCapacidad iServiciocapacidad;
+    private iServicioCapacidad iServicioCapacidad;
 
     @Autowired
     private CapacidadUtilityService capacidadUtilityService;
 
     @PostMapping("/register")
-    public ResponseEntity<CapacidadDTO> agregarcapacidad(@RequestBody CapacidadDTO capacidadDTO) {
+    public ResponseEntity<CapacidadDTO> agregarCapacidad(@RequestBody CapacidadDTO capacidadDTO) {
         CapacidadDTO capacidadDTOSaved = (CapacidadDTO) capacidadUtilityService
-                .convertEntityToDTO(iServiciocapacidad.agregarCapacidad(capacidadDTO));
+                .convertEntityToDTO(iServicioCapacidad.agregarCapacidad(capacidadDTO));
         return new ResponseEntity<>(capacidadDTOSaved, OK);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<CapacidadDTO> editarcapacidad(@RequestBody CapacidadDTO capacidadDTO) {
+    public ResponseEntity<CapacidadDTO> editarCapacidad(@RequestBody CapacidadDTO capacidadDTO) {
         CapacidadDTO capacidadUpdated = (CapacidadDTO) capacidadUtilityService.convertEntityToDTO(
-                this.iServiciocapacidad.editarCapacidad(capacidadDTO));
+                this.iServicioCapacidad.editarCapacidad(capacidadDTO));
         return new ResponseEntity<>(capacidadUpdated, OK);
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<Object>> listarcapacidads() {
-        List<Object> capacidadsDTO = iServiciocapacidad.getCapacidades()
+    public ResponseEntity<List<Object>> listarCapacidades() {
+        List<Object> capacidadDTO = iServicioCapacidad.getCapacidades()
                 .stream()
                 .map(capacidadUtilityService::convertEntityToDTO)
                 .collect(Collectors.toList());
-        return new ResponseEntity<>(capacidadsDTO, OK);
-    }
-
-    @GetMapping("/find/{idcapacidad}")
-    public ResponseEntity<CapacidadDTO> buscarcapacidadPorID(@PathVariable("idcapacidad") Long idCapacidad) {
-        CapacidadDTO capacidadDTO = (CapacidadDTO) capacidadUtilityService.convertEntityToDTO(
-                iServiciocapacidad.findCapacidadById(idCapacidad));
         return new ResponseEntity<>(capacidadDTO, OK);
     }
 
-    @DeleteMapping("/delete/{idcapacidad}")
+    @GetMapping("/find/{idCapacidad}")
+    public ResponseEntity<CapacidadDTO> buscarCapacidadPorID(@PathVariable("idCapacidad") Long idCapacidad) {
+        CapacidadDTO capacidadDTO = (CapacidadDTO) capacidadUtilityService.convertEntityToDTO(
+                iServicioCapacidad.findCapacidadById(idCapacidad));
+        return new ResponseEntity<>(capacidadDTO, OK);
+    }
+
+    @DeleteMapping("/delete/{idCapacidad}")
     //@PreAuthorize("hasAnyAuthority('user:delete')")
-    public ResponseEntity<HttpResponse> eliminarcapacidadPorId(@PathVariable("idcapacidad") Long idCapacidad) {
-        if (this.iServiciocapacidad.eliminarCapacidadPorId(idCapacidad))
+    public ResponseEntity<HttpResponse> eliminarCapacidadPorId(@PathVariable("idCapacidad") Long idCapacidad) {
+        if (this.iServicioCapacidad.eliminarCapacidadPorId(idCapacidad))
             return response(OK, CAPACIDAD_ELIMINADO_CORRECTAMENTE);
         return response(HttpStatus.OK, "ERROR AL ELMINAR CAPACIDAD.");
     }
