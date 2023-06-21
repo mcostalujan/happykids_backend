@@ -13,14 +13,14 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Entity(name = "capacidad")
+@Entity(name = "Capacidad")
 @Table(name = "capacidad")
 public class Capacidad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_capacidad", updatable = false)
-    private Long idcapacidad;
+    private Long idCapacidad;
 
     @ManyToOne
     @JoinColumn(
@@ -32,7 +32,7 @@ public class Capacidad {
     private Competencia competencia;
 
     @Column(name = "cod_capacidad")
-    private String codcapacidad;
+    private String codCapacidad;
 
     @Column(name = "capacidad_desc")
     private String capacidadDesc;
@@ -44,15 +44,15 @@ public class Capacidad {
     private Boolean indElim;
 
     @Column(name = "usu_crea_capacidad")
-    private String usuCreacapacidad;
+    private String usuCreaCapacidad;
 
     @Column(name = "fec_crea_capacidad")
-    private Date fecCreacapacidad;
+    private Date fecCreaCapacidad;
 
     @Column(name = "usu_modi_capacidad")
-    private String usuModicapacidad;
+    private String usuModiCapacidad;
 
     @Column(name = "fec_modi_capacidad")
-    private Date fecModicapacidad;
+    private Date fecModiCapacidad;
 
 }

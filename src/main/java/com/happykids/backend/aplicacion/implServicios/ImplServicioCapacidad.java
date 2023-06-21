@@ -27,22 +27,22 @@ public class ImplServicioCapacidad implements iServicioCapacidad {
     private CapacidadUtilityService capacidadUtilityService;
 
     @Override
-    public List<Capacidad> getcapacidads() {
+    public List<Capacidad> getCapacidades() {
         log.info("Entrando a {} - getcapacidads", this.getClass().getName());
         return iRepositoriocapacidad.findAll();
     }
 
     @Override
-    public Capacidad findcapacidadById(Long idcapacidad) {
+    public Capacidad findCapacidadById(Long idcapacidad) {
         if (idcapacidad != null)
-            return iRepositoriocapacidad.findcapacidadByIdcapacidad(idcapacidad);
+            return iRepositoriocapacidad.findCapacidadByIdCapacidad(idcapacidad);
         return null;
     }
 
     @Override
-    public Capacidad editarcapacidad(CapacidadDTO capacidadDTO) {
-        if (capacidadDTO != null && capacidadDTO.getIdcapacidad() != null) {
-            if (iRepositoriocapacidad.findcapacidadByIdcapacidad(Long.valueOf(capacidadDTO.getIdcapacidad())) != null) {
+    public Capacidad editarCapacidad(CapacidadDTO capacidadDTO) {
+        if (capacidadDTO != null && capacidadDTO.getIdCapacidad() != null) {
+            if (iRepositoriocapacidad.findCapacidadByIdCapacidad(Long.valueOf(capacidadDTO.getIdCapacidad())) != null) {
                 return iRepositoriocapacidad
                         .save((Capacidad) capacidadUtilityService
                                 .convertDTOtoEntity(capacidadDTO));
@@ -52,7 +52,7 @@ public class ImplServicioCapacidad implements iServicioCapacidad {
     }
 
     @Override
-    public Capacidad agregarcapacidad(CapacidadDTO capacidadDTO) {
+    public Capacidad agregarCapacidad(CapacidadDTO capacidadDTO) {
         if (capacidadDTO != null) {
             capacidadDTO.setIndActi("true");
             capacidadDTO.setIndElim("false");
@@ -62,9 +62,9 @@ public class ImplServicioCapacidad implements iServicioCapacidad {
     }
 
     @Override
-    public boolean eliminarcapacidadPorId(Long idcapacidad) {
+    public boolean eliminarCapacidadPorId(Long idcapacidad) {
         if (idcapacidad != null) {
-            if (iRepositoriocapacidad.findcapacidadByIdcapacidad(Long.valueOf(idcapacidad)) != null) {
+            if (iRepositoriocapacidad.findCapacidadByIdCapacidad(Long.valueOf(idcapacidad)) != null) {
                 iRepositoriocapacidad.deleteById(Long.valueOf(idcapacidad));
                 return true;
             }

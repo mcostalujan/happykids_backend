@@ -28,16 +28,16 @@ public class CapacidadUtilityService implements iUtilityService {
         Capacidad capacidad = (Capacidad) entityObject;
         log.info("Entrando a {} - convertEntityToDTO", this.getClass().getName());
         return CapacidadDTO.builder()
-                .idcapacidad(String.valueOf(capacidad.getIdcapacidad()))
+                .idCapacidad(String.valueOf(capacidad.getIdCapacidad()))
                 .idCompetencia(String.valueOf(capacidad.getCompetencia().getIdCompe()))
-                .codcapacidad(capacidad.getCodcapacidad())
+                .codCapacidad(capacidad.getCodCapacidad())
                 .capacidadDesc(capacidad.getCapacidadDesc())
                 .indActi(String.valueOf(capacidad.getIndActi()))
                 .indElim(String.valueOf(capacidad.getIndElim()))
-                .usuCreacapacidad(capacidad.getUsuCreacapacidad())
-                .fecCreacapacidad(utilityService.convertDateToString(capacidad.getFecCreacapacidad()))
-                .usuModicapacidad(capacidad.getUsuModicapacidad())
-                .fecModicapacidad(utilityService.convertDateToString(capacidad.getFecModicapacidad()))
+                .usuCreaCapacidad(capacidad.getUsuCreaCapacidad())
+                .fecCreaCapacidad(utilityService.convertDateToString(capacidad.getFecCreaCapacidad()))
+                .usuModiCapacidad(capacidad.getUsuModiCapacidad())
+                .fecModiCapacidad(utilityService.convertDateToString(capacidad.getFecModiCapacidad()))
                 .build();
     }
 
@@ -47,16 +47,16 @@ public class CapacidadUtilityService implements iUtilityService {
 
         log.info("Entrando a {} - convertDTOtoEntity", this.getClass().getName());
         return Capacidad.builder()
-                .idcapacidad(NumberUtils.toLong(capacidadDTO.getCodcapacidad()))
+                .idCapacidad(NumberUtils.toLong(capacidadDTO.getCodCapacidad()))
                 .competencia(implServicioCompetencia.findCompetenciaById(Long.valueOf(capacidadDTO.getIdCompetencia())))
-                .codcapacidad(capacidadDTO.getCodcapacidad())
+                .codCapacidad(capacidadDTO.getCodCapacidad())
                 .capacidadDesc(capacidadDTO.getCapacidadDesc())
                 .indActi(Boolean.valueOf(capacidadDTO.getIndActi()))
                 .indElim(Boolean.valueOf(capacidadDTO.getIndElim()))
-                .fecCreacapacidad(utilityService.convertStringToDate(capacidadDTO.getFecCreacapacidad()))
-                .usuCreacapacidad(capacidadDTO.getUsuCreacapacidad())
-                .fecModicapacidad(utilityService.convertStringToDate(capacidadDTO.getFecModicapacidad()))
-                .usuModicapacidad(capacidadDTO.getUsuModicapacidad())
+                .fecCreaCapacidad(utilityService.convertStringToDate(capacidadDTO.getFecCreaCapacidad()))
+                .usuCreaCapacidad(capacidadDTO.getUsuCreaCapacidad())
+                .fecModiCapacidad(utilityService.convertStringToDate(capacidadDTO.getFecModiCapacidad()))
+                .usuModiCapacidad(capacidadDTO.getUsuModiCapacidad())
                 .build();
     }
 

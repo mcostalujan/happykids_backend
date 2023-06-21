@@ -13,16 +13,16 @@ import lombok.*;
 @ToString
 public class CapacidadDTO {
 
-    private String idcapacidad;
+    private String idCapacidad;
     private String idCompetencia;
-    private String codcapacidad;
+    private String codCapacidad;
     private String capacidadDesc;
     private String indActi;
     private String indElim;
-    private String usuCreacapacidad;
-    private String fecCreacapacidad;
-    private String usuModicapacidad;
-    private String fecModicapacidad;
+    private String usuCreaCapacidad;
+    private String fecCreaCapacidad;
+    private String usuModiCapacidad;
+    private String fecModiCapacidad;
 
 }
 

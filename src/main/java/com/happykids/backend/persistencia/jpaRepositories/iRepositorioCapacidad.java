@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface iRepositorioCapacidad extends JpaRepository<Capacidad, Long> {
 
-    Capacidad findcapacidadByIdcapacidad(Long idcapacidad);
+    Capacidad findCapacidadByIdCapacidad(Long idCapacidad);
 
 }

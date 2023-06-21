@@ -4,14 +4,14 @@ import com.happykids.backend.dominio.dto.CapacidadDTO;
 import com.happykids.backend.dominio.entidades.Capacidad;
 
 public interface iServicioCapacidad {
-    List<Capacidad> getcapacidads();
+    List<Capacidad> getCapacidades();
     
-    Capacidad findcapacidadById(Long idcapacidad) ;
+    Capacidad findCapacidadById (Long idCapacidad) ;
 
-    Capacidad editarcapacidad(CapacidadDTO capacidadDTO) ;
+    Capacidad editarCapacidad (CapacidadDTO capacidadDTO) ;
 
-    Capacidad agregarcapacidad(CapacidadDTO capacidadDTO) ;
+    Capacidad agregarCapacidad (CapacidadDTO capacidadDTO) ;
 
-    boolean eliminarcapacidadPorId(Long idcapacidad);
+    boolean eliminarCapacidadPorId (Long idCapacidad);
 
 }

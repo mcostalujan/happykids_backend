@@ -31,20 +31,20 @@ public class CapacidadControlador {
     @PostMapping("/register")
     public ResponseEntity<CapacidadDTO> agregarcapacidad(@RequestBody CapacidadDTO capacidadDTO) {
         CapacidadDTO capacidadDTOSaved = (CapacidadDTO) capacidadUtilityService
-                .convertEntityToDTO(iServiciocapacidad.agregarcapacidad(capacidadDTO));
+                .convertEntityToDTO(iServiciocapacidad.agregarCapacidad(capacidadDTO));
         return new ResponseEntity<>(capacidadDTOSaved, OK);
     }
 
     @PutMapping("/update")
     public ResponseEntity<CapacidadDTO> editarcapacidad(@RequestBody CapacidadDTO capacidadDTO) {
         CapacidadDTO capacidadUpdated = (CapacidadDTO) capacidadUtilityService.convertEntityToDTO(
-                this.iServiciocapacidad.editarcapacidad(capacidadDTO));
+                this.iServiciocapacidad.editarCapacidad(capacidadDTO));
         return new ResponseEntity<>(capacidadUpdated, OK);
     }
 
     @GetMapping("/list")
     public ResponseEntity<List<Object>> listarcapacidads() {
-        List<Object> capacidadsDTO = iServiciocapacidad.getcapacidads()
+        List<Object> capacidadsDTO = iServiciocapacidad.getCapacidades()
                 .stream()
                 .map(capacidadUtilityService::convertEntityToDTO)
                 .collect(Collectors.toList());
@@ -52,18 +52,18 @@ public class CapacidadControlador {
     }
 
     @GetMapping("/find/{idcapacidad}")
-    public ResponseEntity<CapacidadDTO> buscarcapacidadPorID(@PathVariable("idcapacidad") Long idcapacidad) {
+    public ResponseEntity<CapacidadDTO> buscarcapacidadPorID(@PathVariable("idcapacidad") Long idCapacidad) {
         CapacidadDTO capacidadDTO = (CapacidadDTO) capacidadUtilityService.convertEntityToDTO(
-                iServiciocapacidad.findcapacidadById(idcapacidad));
+                iServiciocapacidad.findCapacidadById(idCapacidad));
         return new ResponseEntity<>(capacidadDTO, OK);
     }
 
     @DeleteMapping("/delete/{idcapacidad}")
     //@PreAuthorize("hasAnyAuthority('user:delete')")
-    public ResponseEntity<HttpResponse> eliminarcapacidadPorId(@PathVariable("idcapacidad") Long idcapacidad) {
-        if (this.iServiciocapacidad.eliminarcapacidadPorId(idcapacidad))
+    public ResponseEntity<HttpResponse> eliminarcapacidadPorId(@PathVariable("idcapacidad") Long idCapacidad) {
+        if (this.iServiciocapacidad.eliminarCapacidadPorId(idCapacidad))
             return response(OK, CAPACIDAD_ELIMINADO_CORRECTAMENTE);
-        return response(HttpStatus.OK, "ERROR AL ELMINAR capacidad.");
+        return response(HttpStatus.OK, "ERROR AL ELMINAR CAPACIDAD.");
     }
 
     private ResponseEntity<HttpResponse> response(HttpStatus httpStatus, String message) {
