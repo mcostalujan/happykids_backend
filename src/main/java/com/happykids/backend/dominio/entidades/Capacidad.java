@@ -13,29 +13,29 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Entity(name = "Logro")
-@Table(name = "logro")
-public class Logro {
+@Entity(name = "capacidad")
+@Table(name = "capacidad")
+public class Capacidad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_logro", updatable = false)
-    private Long idLogro;
+    @Column(name = "id_capacidad", updatable = false)
+    private Long idcapacidad;
 
     @ManyToOne
     @JoinColumn(
             name = "compe_id_compe",
             nullable = false,
             referencedColumnName = "id_compe",
-            foreignKey = @ForeignKey(name = "logro_compe_id_compe_fk")
+            foreignKey = @ForeignKey(name = "capacidad_compe_id_compe_fk")
     )
     private Competencia competencia;
 
-    @Column(name = "cod_logro")
-    private String codLogro;
+    @Column(name = "cod_capacidad")
+    private String codcapacidad;
 
-    @Column(name = "logro_desc")
-    private String logroDesc;
+    @Column(name = "capacidad_desc")
+    private String capacidadDesc;
 
     @Column(name = "ind_acti")
     private Boolean indActi;
@@ -43,16 +43,16 @@ public class Logro {
     @Column(name = "ind_elim")
     private Boolean indElim;
 
-    @Column(name = "usu_crea_logro")
-    private String usuCreaLogro;
+    @Column(name = "usu_crea_capacidad")
+    private String usuCreacapacidad;
 
-    @Column(name = "fec_crea_logro")
-    private Date fecCreaLogro;
+    @Column(name = "fec_crea_capacidad")
+    private Date fecCreacapacidad;
 
-    @Column(name = "usu_modi_logro")
-    private String usuModiLogro;
+    @Column(name = "usu_modi_capacidad")
+    private String usuModicapacidad;
 
-    @Column(name = "fec_modi_logro")
-    private Date fecModiLogro;
+    @Column(name = "fec_modi_capacidad")
+    private Date fecModicapacidad;
 
 }

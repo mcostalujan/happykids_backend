@@ -2,7 +2,7 @@ package com.happykids.backend.aplicacion.implServicios;
 
 import com.happykids.backend.aplicacion.iServicios.*;
 import com.happykids.backend.aplicacion.implServicios.utilitarios.NotaUtilityService;
-import com.happykids.backend.dominio.dto.AlumnoNotaLogroDTO;
+import com.happykids.backend.dominio.dto.AlumnoNotaCapacidadDTO;
 import com.happykids.backend.dominio.dto.NotaDTO;
 import com.happykids.backend.dominio.entidades.Nota;
 import com.happykids.backend.persistencia.jpaRepositories.iRepositorioNota;

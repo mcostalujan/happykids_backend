@@ -11,18 +11,18 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class LogroDTO {
+public class CapacidadDTO {
 
-    private String idLogro;
+    private String idcapacidad;
     private String idCompetencia;
-    private String codLogro;
-    private String logroDesc;
+    private String codcapacidad;
+    private String capacidadDesc;
     private String indActi;
     private String indElim;
-    private String usuCreaLogro;
-    private String fecCreaLogro;
-    private String usuModiLogro;
-    private String fecModiLogro;
+    private String usuCreacapacidad;
+    private String fecCreacapacidad;
+    private String usuModicapacidad;
+    private String fecModicapacidad;
 
 }
 

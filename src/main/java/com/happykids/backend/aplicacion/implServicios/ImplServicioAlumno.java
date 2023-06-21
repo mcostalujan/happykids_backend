@@ -4,7 +4,6 @@ import com.happykids.backend.aplicacion.iServicios.iServicioAlumno;
 import com.happykids.backend.aplicacion.implServicios.utilitarios.AlumnoUtilityService;
 import com.happykids.backend.dominio.dto.AlumnoDTO;
 import com.happykids.backend.dominio.entidades.Alumno;
-import com.happykids.backend.dominio.entidades.Logro;
 import com.happykids.backend.persistencia.jpaRepositories.iRepositorioAlumno;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.happykids.backend.aplicacion.implServicios.utilitarios;
 
-import com.happykids.backend.dominio.dto.LogroDTO;
-import com.happykids.backend.dominio.entidades.Logro;
+import com.happykids.backend.dominio.dto.CapacidadDTO;
+import com.happykids.backend.dominio.entidades.Capacidad;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 

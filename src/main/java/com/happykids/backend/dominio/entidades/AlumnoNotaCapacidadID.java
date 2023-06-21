@@ -15,24 +15,24 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class AlumnoNotaLogroID implements Serializable {
+public class AlumnoNotaCapacidadID implements Serializable {
 
     @Column(name = "id_aprog")
     private Long idAprog;
 
-    @Column(name = "id_logro")
-    private Long idLogro;
+    @Column(name = "id_capacidad")
+    private Long idCapacidad;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AlumnoNotaLogroID that = (AlumnoNotaLogroID) o;
-        return Objects.equals(idAprog, that.idAprog) && Objects.equals(idLogro, that.idLogro);
+        AlumnoNotaCapacidadID that = (AlumnoNotaCapacidadID) o;
+        return Objects.equals(idAprog, that.idAprog) && Objects.equals(idCapacidad, that.idCapacidad);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idAprog, idLogro);
+        return Objects.hash(idAprog, idCapacidad);
     }
 }
