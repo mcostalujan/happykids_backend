@@ -24,7 +24,7 @@ public class ImplServicioCompetencia implements iServicioCompetencia {
 
     @Override
     public List<Competencia> getCompetencias() {
-        log.info("Entrando a {} - getLogros", this.getClass().getName());
+        log.info("Entrando a {} - getCompetencias", this.getClass().getName());
         return iRepositorioCompetencia.findAll();
     }
 

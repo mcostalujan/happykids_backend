@@ -38,9 +38,9 @@ public class CompetenciaControlador {
 
     @PutMapping("/update")
     public ResponseEntity<CompetenciaDTO> editarCompetencia(@RequestBody CompetenciaDTO competenciaDTO) {
-        CompetenciaDTO logroUpdated = (CompetenciaDTO) competenciaUtilityService.convertEntityToDTO(
+        CompetenciaDTO competenciaUpdated = (CompetenciaDTO) competenciaUtilityService.convertEntityToDTO(
                 this.iServicioCompetencia.editarCompetencia(competenciaDTO));
-        return new ResponseEntity<>(logroUpdated, OK);
+        return new ResponseEntity<>(competenciaUpdated, OK);
     }
 
     @GetMapping("/list")
