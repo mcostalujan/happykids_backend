@@ -2,11 +2,14 @@ package com.happykids.backend.dominio.entidades;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.Date;
+
+@Builder
 
 @Data
 @AllArgsConstructor
@@ -36,6 +39,9 @@ public class AlumnoCompetencia {
             foreignKey = @ForeignKey(name = "acompe_compe_id_compe_fk")
     )
     private Competencia competencia;
+    
+    @Column(name="ind_acti")
+    private Boolean indActi;
 
     @Column(name = "fec_crea_compe")
     private Date fecCreaCompe;

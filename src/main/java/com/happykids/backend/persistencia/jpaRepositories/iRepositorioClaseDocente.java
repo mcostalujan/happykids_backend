@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface iRepositorioClaseDocente extends JpaRepository<ClaseDocente, ClaseDocenteID> {
 
-    ClaseDocente findClaseDocenteByClaseDocenteID_IdClaseAndClaseDocenteID_IdDoc(Long idDoc, Long idClase);
+    ClaseDocente findClaseDocenteByClaseDocenteID_IdClaseAndClaseDocenteID_IdDoc
+    (Long idDoc, Long idClase);
 
 }
