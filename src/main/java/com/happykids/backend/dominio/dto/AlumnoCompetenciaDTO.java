@@ -13,13 +13,15 @@ import lombok.ToString;
 @ToString
 
 public class AlumnoCompetenciaDTO {
+    private String idAcompe;
+    private String codAcompe;
     private String idAprog;
     private String idCompe;
     private String fecCreaCompe;
     private String fecModiCompe;
     private String usuCreaCompe;
     private String usuModiCompe;
-    private String valPromedio;
-    private String valPromedioDesc;
+    private String valPromLogro;
+    private String valPromLogroDesc;
     private String indActi;
 }

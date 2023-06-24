@@ -5,6 +5,8 @@ import com.happykids.backend.aplicacion.iServicios.iServicioAlumnoProgreso;
 import com.happykids.backend.aplicacion.implServicios.utilitarios.AlumnoProgresoUtilityService;
 import com.happykids.backend.dominio.dto.AlumnoDTO;
 import com.happykids.backend.dominio.dto.AlumnoProgresoDTO;
+import com.happykids.backend.dominio.dto.ConsultasSQL.DetalleAlumnosPorClase;
+import com.happykids.backend.dominio.dto.ConsultasSQL.DetalleClasesDocente;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -49,6 +51,13 @@ public class AlumnoProgresoControlador {
                 .map(alumnoProgresoUtilityService::convertEntityToDTO)
                 .collect(Collectors.toList());
         return new ResponseEntity<>(notasDTO, OK);
+    }
+
+    @GetMapping("/get/getAlumnosPorClase")
+    public ResponseEntity<List<DetalleAlumnosPorClase>> getAlumnosPorClase(@ModelAttribute(value = "idClase") String idClase) {
+        log.info("Entrando a {} - getAlumnosPorClase", this.getClass().getName());
+        List<DetalleAlumnosPorClase> clasesDTO = iServicioAlumnoProgreso.getAlumnosPorClase(idClase);
+        return new ResponseEntity<>(clasesDTO, OK);
     }
 
 }

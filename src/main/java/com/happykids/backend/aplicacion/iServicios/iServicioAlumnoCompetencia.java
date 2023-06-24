@@ -7,7 +7,7 @@ import java.util.List;
 public interface iServicioAlumnoCompetencia {
     List<AlumnoCompetencia> getAlumnoCompetencias();
 
-    AlumnoCompetencia findAlumnoCompetenciaById(Long idAlumno, Long idCompetencia);
+    AlumnoCompetencia findAlumnoCompetenciaByIdAcompe(Long idAcompe);
     
     AlumnoCompetencia createAlumnoCompetencia(AlumnoCompetenciaDTO AlumnoCompetenciaDTO);
     

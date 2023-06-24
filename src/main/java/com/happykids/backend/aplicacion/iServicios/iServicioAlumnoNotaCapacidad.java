@@ -6,15 +6,13 @@ import com.happykids.backend.dominio.dto.AlumnoNotaCapacidadDTO;
 import com.happykids.backend.dominio.entidades.AlumnoNotaCapacidad;
 
 public interface iServicioAlumnoNotaCapacidad {
-    List<AlumnoNotaCapacidadDTO> getAlumnoNotaCapacidad();
-    
-    AlumnoNotaCapacidad findAlumnoByNombre() ;
+    List<AlumnoNotaCapacidad> getAlumnosNotaCapacidad();
 
-    AlumnoNotaCapacidad addNewAlumnoNotaCapacidad(String nombre, String idUser) ;
+    AlumnoNotaCapacidad findAlumnoNotaCapacidadById(Long idAcompe, Long idCapacidad);
 
-    AlumnoNotaCapacidad updateAlumnoNotaCapacidad(String currentNombre, String newNombre, String idUser) ;
+    AlumnoNotaCapacidad createAlumnoNotaCapacidad(AlumnoNotaCapacidadDTO alumnoNotaCapacidadDTO);
 
-    void deleteAlumnoNotaCapacidad(String nombre);
-    
-    /*AlumnoCompetencia register(String nombre);*/
+    AlumnoNotaCapacidad updateAlumnoNotaCapacidad(AlumnoNotaCapacidadDTO alumnoNotaCapacidadDTO);
+
+//    List<DetalleClasesDocente> getClasesByDocenteAndPeriodo(String idDocente, String idPer);
 }

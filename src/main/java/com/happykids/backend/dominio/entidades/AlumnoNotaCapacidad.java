@@ -1,10 +1,7 @@
 package com.happykids.backend.dominio.entidades;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Date;
 
@@ -14,19 +11,20 @@ import java.util.Date;
 @ToString
 @Entity(name = "AlumnoNotaCapacidad")
 @Table(name = "alum_nota_capa")
+@Builder
 public class AlumnoNotaCapacidad {
 
     @EmbeddedId
     AlumnoNotaCapacidadID alumnoNotaCapacidadID;
 
     @ManyToOne
-    @MapsId("idAprog")
+    @MapsId("idCompe")
     @JoinColumn(
-            name = "aprog_id_aprog",
-            referencedColumnName = "id_aprog",
-            foreignKey = @ForeignKey(name = "alnoc_aprog_id_aprog_fk")
+            name = "acompe_id_acompe",
+            referencedColumnName = "id_acompe",
+            foreignKey = @ForeignKey(name = "alnoc_acompe_id_acompe_fk")
     )
-    private AlumnoProgreso alumnoProgreso;
+    private AlumnoCompetencia alumnoCompetencia;
 
     @ManyToOne
     @MapsId("idCapacidad")
@@ -54,6 +52,9 @@ public class AlumnoNotaCapacidad {
 
     @Column(name = "fec_modi_capa")
     private Date fecModiCapa;
+
+    @Column(name = "ind_acti")
+    private Boolean indActi;
 
 
 }

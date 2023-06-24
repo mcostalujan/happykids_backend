@@ -19,11 +19,15 @@ import java.util.Date;
 @Table(name = "alum_compe")
 public class AlumnoCompetencia {
 
-    @EmbeddedId
-    private AlumnoCompetenciaID alumnoCompetenciaID;
+//    @EmbeddedId
+//    private AlumnoCompetenciaID alumnoCompetenciaID;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_acompe", updatable = false)
+    private Long idAcompe;
 
     @ManyToOne
-    @MapsId("idAprog")
     @JoinColumn(
             name = "aprog_id_aprog",
             referencedColumnName = "id_aprog",
@@ -32,13 +36,15 @@ public class AlumnoCompetencia {
     private AlumnoProgreso alumnoProgreso;
 
     @ManyToOne
-    @MapsId("idCompe")
     @JoinColumn(
             name = "compe_id_compe",
             referencedColumnName = "id_compe",
             foreignKey = @ForeignKey(name = "acompe_compe_id_compe_fk")
     )
     private Competencia competencia;
+
+    @Column(name="cod_acompe")
+    private String codAcompe;
     
     @Column(name="ind_acti")
     private Boolean indActi;
@@ -55,10 +61,10 @@ public class AlumnoCompetencia {
     @Column(name = "usu_modi_compe")
     private String usuModiCompe;
 
-    @Column(name = "val_promedio")
-    private Float valPromedio;
+    @Column(name = "val_prom_logro")
+    private Float valPromLogro;
 
-    @Column(name = "val_promedio_desc")
-    private String valPromedioDesc;
+    @Column(name = "val_prom_logro_desc")
+    private String valPromLogroDesc;
 
 }

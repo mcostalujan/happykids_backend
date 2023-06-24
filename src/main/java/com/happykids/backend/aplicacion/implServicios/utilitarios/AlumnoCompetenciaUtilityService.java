@@ -1,21 +1,13 @@
 package com.happykids.backend.aplicacion.implServicios.utilitarios;
 
-import com.happykids.backend.dominio.dto.CapacidadDTO;
-import com.happykids.backend.dominio.entidades.Capacidad;
-import org.apache.commons.lang3.math.NumberUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.happykids.backend.aplicacion.iServicios.Utilitarios.iUtilityService;
-import com.happykids.backend.aplicacion.implServicios.ImplServicioAlumnoCompetencia;
 import com.happykids.backend.aplicacion.implServicios.ImplServicioAlumnoProgreso;
 import com.happykids.backend.aplicacion.implServicios.ImplServicioCompetencia;
 import com.happykids.backend.dominio.dto.AlumnoCompetenciaDTO;
-import com.happykids.backend.dominio.dto.AlumnoDTO;
-import com.happykids.backend.dominio.entidades.Alumno;
 import com.happykids.backend.dominio.entidades.AlumnoCompetencia;
-import com.happykids.backend.dominio.entidades.AlumnoCompetenciaID;
-
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.math.NumberUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -34,15 +26,16 @@ public class AlumnoCompetenciaUtilityService implements iUtilityService {
         AlumnoCompetencia alumnoCompetencia = (AlumnoCompetencia) entityObject;
         log.info("Entrando a {} - convertEntityToDTO", this.getClass().getName());
         return AlumnoCompetenciaDTO.builder()
-
+                .idAcompe(String.valueOf(alumnoCompetencia.getIdAcompe()))
+                .codAcompe(alumnoCompetencia.getCodAcompe())
                 .idAprog(String.valueOf(alumnoCompetencia.getAlumnoProgreso().getIdAprog()))
                 .idCompe(String.valueOf(alumnoCompetencia.getCompetencia().getIdCompe()))
                 .usuCreaCompe(alumnoCompetencia.getUsuCreaCompe())
                 .fecCreaCompe(utilityService.convertDateToString(alumnoCompetencia.getFecCreaCompe()))
                 .usuModiCompe(alumnoCompetencia.getUsuModiCompe())
                 .fecModiCompe(utilityService.convertDateToString(alumnoCompetencia.getFecModiCompe()))
-                .valPromedio(String.valueOf(alumnoCompetencia.getValPromedio()))
-                .valPromedioDesc(alumnoCompetencia.getValPromedioDesc())
+                .valPromLogro(String.valueOf(alumnoCompetencia.getValPromLogro()))
+                .valPromLogroDesc(alumnoCompetencia.getValPromLogroDesc())
                 .indActi(String.valueOf(alumnoCompetencia.getIndActi()))
                 .build();
     }
@@ -57,22 +50,23 @@ public class AlumnoCompetenciaUtilityService implements iUtilityService {
                 (NumberUtils.toLong(alumnoCompetenciaDTO.getIdAprog())))
                 .competencia(ImplServicioCompetencia.findCompetenciaById
                 (NumberUtils.toLong(alumnoCompetenciaDTO.getIdAprog())))
-                .alumnoCompetenciaID((alumnoCompetenciaDTO.getIdCompe()!=null
-                && alumnoCompetenciaDTO.getIdCompe()!=null)
-                ?new AlumnoCompetenciaID
-                (
-                    NumberUtils.toLong(alumnoCompetenciaDTO.getIdAprog()),
-                    NumberUtils.toLong(alumnoCompetenciaDTO.getIdCompe()))
-                    :null
-                    
-                )
-
+//                .alumnoCompetenciaID((alumnoCompetenciaDTO.getIdCompe()!=null
+//                && alumnoCompetenciaDTO.getIdCompe()!=null)
+//                ?new AlumnoCompetenciaID
+//                (
+//                    NumberUtils.toLong(alumnoCompetenciaDTO.getIdAprog()),
+//                    NumberUtils.toLong(alumnoCompetenciaDTO.getIdCompe()))
+//                    :null
+//
+//                )
+                .idAcompe(NumberUtils.toLong(alumnoCompetenciaDTO.getIdAcompe()))
+                .codAcompe(alumnoCompetenciaDTO.getCodAcompe())
                 .usuCreaCompe(alumnoCompetenciaDTO.getUsuCreaCompe())
                 .fecCreaCompe(utilityService.convertStringToDate(alumnoCompetenciaDTO.getFecCreaCompe()))
                 .usuModiCompe(alumnoCompetenciaDTO.getUsuModiCompe())
                 .fecModiCompe(utilityService.convertStringToDate(alumnoCompetenciaDTO.getFecModiCompe()))
-                .valPromedio(Float.valueOf(alumnoCompetenciaDTO.getValPromedio()))
-                .valPromedioDesc(alumnoCompetenciaDTO.getValPromedioDesc())
+                .valPromLogro(Float.valueOf(alumnoCompetenciaDTO.getValPromLogro()))
+                .valPromLogroDesc(alumnoCompetenciaDTO.getValPromLogroDesc())
                 .indActi(Boolean.valueOf(alumnoCompetenciaDTO.getIndActi()))
                 .build();
     }

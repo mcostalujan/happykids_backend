@@ -3,9 +3,12 @@ package com.happykids.backend.aplicacion.implServicios;
 import com.happykids.backend.aplicacion.iServicios.*;
 import com.happykids.backend.aplicacion.implServicios.utilitarios.AlumnoProgresoUtilityService;
 import com.happykids.backend.dominio.dto.AlumnoProgresoDTO;
+import com.happykids.backend.dominio.dto.ConsultasSQL.DetalleAlumnosPorClase;
+import com.happykids.backend.dominio.dto.ConsultasSQL.DetalleClasesDocente;
 import com.happykids.backend.dominio.entidades.Alumno;
 import com.happykids.backend.dominio.entidades.AlumnoProgreso;
 import com.happykids.backend.persistencia.jpaRepositories.iRepositorioAlumnoProgreso;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.happykids.backend.persistencia.jpaRepositories.iRepositorioAlumnoProgreso;
@@ -13,6 +16,7 @@ import com.happykids.backend.persistencia.jpaRepositories.iRepositorioAlumnoProg
 import java.util.List;
 
 @Service
+@Slf4j
 public class ImplServicioAlumnoProgreso implements iServicioAlumnoProgreso {
 
     @Autowired
@@ -44,5 +48,13 @@ public class ImplServicioAlumnoProgreso implements iServicioAlumnoProgreso {
                     alumnoProgresoUtilityService.convertDTOtoEntity(alumnoProgresoDTO));
         }
         return null;
+    }
+
+    @Override
+    public List<DetalleAlumnosPorClase> getAlumnosPorClase(String idClase) {
+        log.info("Entrando a {} - getClasesByDocenteAndPeriodo", this.getClass().getName());
+        return iRepositorioAlumnoProgreso.getDetalleAlumnosPorClase(idClase)
+                .stream()
+                .map(DetalleAlumnosPorClase::convertTupleToEntity).toList();
     }
 }

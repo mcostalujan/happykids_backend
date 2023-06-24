@@ -2,15 +2,12 @@ package com.happykids.backend.presentacion.controladores;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.happykids.backend.dominio.dto.AlumnoDTO;
+import com.happykids.backend.dominio.entidades.AlumnoCompetencia;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.happykids.backend.aplicacion.implServicios.utilitarios.AlumnoCompetenciaUtilityService;
 import com.happykids.backend.dominio.dto.AlumnoCompetenciaDTO;
 import com.happykids.backend.dominio.dto.AlumnoCompetenciaIdDTO;
@@ -53,14 +50,12 @@ public class AlumnoCompetenciaControlador{
         return new ResponseEntity<>(clasesDocenteDTO, OK);
     }
 
-    @GetMapping("/find")
-    public ResponseEntity<AlumnoCompetenciaDTO> buscarAlumnoCompetenciaPorID(@RequestBody AlumnoCompetenciaIdDTO alumnoCompetenciaIdDTO) {
-        AlumnoCompetenciaDTO alumnoCompetenciaDTO = (AlumnoCompetenciaDTO) alumnoCompetenciaUtilityService
-                .convertEntityToDTO(iServicioAlumnoCompetencia
-                        .findAlumnoCompetenciaById(
-                                NumberUtils.toLong(alumnoCompetenciaIdDTO.getIdAprog()),
-                                NumberUtils.toLong(alumnoCompetenciaIdDTO.getIdCompe())));
-        return new ResponseEntity<>(alumnoCompetenciaDTO, OK);
+    @GetMapping("/find/id/{idAcompe}")
+    public ResponseEntity<Object> buscarACompePorID(@PathVariable("idAcompe") Long idAcompe) {
+        log.info("Entrando a {} - buscarACompePorID", this.getClass().getName());
+        AlumnoCompetenciaDTO aCompeDTO = (AlumnoCompetenciaDTO) alumnoCompetenciaUtilityService
+                .convertEntityToDTO(iServicioAlumnoCompetencia.findAlumnoCompetenciaByIdAcompe(idAcompe));
+        return new ResponseEntity<>(aCompeDTO, OK);
     }
 
 }

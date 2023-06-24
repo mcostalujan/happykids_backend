@@ -4,6 +4,8 @@ import com.happykids.backend.aplicacion.iServicios.iServicioClaseDocente;
 import com.happykids.backend.aplicacion.implServicios.utilitarios.ClaseDocenteUtilityService;
 import com.happykids.backend.aplicacion.implServicios.utilitarios.ClaseUtilityService;
 import com.happykids.backend.dominio.dto.ClaseDocenteDTO;
+import com.happykids.backend.dominio.dto.ConsultasSQL.DetalleClase;
+import com.happykids.backend.dominio.dto.ConsultasSQL.DetalleClasesDocente;
 import com.happykids.backend.dominio.entidades.Clase;
 import com.happykids.backend.dominio.entidades.ClaseDocente;
 import com.happykids.backend.dominio.entidades.ClaseEstatus;
@@ -61,6 +63,14 @@ public class ImplServicioClaseDocente implements iServicioClaseDocente {
             }
         }
         return null;
+    }
+
+    @Override
+    public List<DetalleClasesDocente> getClasesByDocenteAndPeriodo(String idDocente, String idPer) {
+        log.info("Entrando a {} - getClasesByDocenteAndPeriodo", this.getClass().getName());
+        return iRepositorioClaseDocente.getClasesByDocenteAndPeriodo(idDocente, idPer)
+                .stream()
+                .map(DetalleClasesDocente::convertTupleToEntity).toList();
     }
 
 }

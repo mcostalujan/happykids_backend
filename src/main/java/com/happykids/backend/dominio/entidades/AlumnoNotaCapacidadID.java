@@ -17,8 +17,8 @@ import java.util.Objects;
 @ToString
 public class AlumnoNotaCapacidadID implements Serializable {
 
-    @Column(name = "id_aprog")
-    private Long idAprog;
+    @Column(name = "id_acompe")
+    private Long idAcompe;
 
     @Column(name = "id_capacidad")
     private Long idCapacidad;
@@ -28,11 +28,11 @@ public class AlumnoNotaCapacidadID implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AlumnoNotaCapacidadID that = (AlumnoNotaCapacidadID) o;
-        return Objects.equals(idAprog, that.idAprog) && Objects.equals(idCapacidad, that.idCapacidad);
+        return Objects.equals(idAcompe, that.idAcompe) && Objects.equals(idCapacidad, that.idCapacidad);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idAprog, idCapacidad);
+        return Objects.hash(idAcompe, idCapacidad);
     }
 }

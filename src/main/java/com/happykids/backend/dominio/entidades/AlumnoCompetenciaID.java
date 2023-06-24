@@ -10,17 +10,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Embeddable
+//@Embeddable
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 public class AlumnoCompetenciaID implements Serializable {
 
-    @Column(name = "id_aprog")
+//    @Column(name = "id_aprog")
     private Long idAprog;
 
-    @Column(name = "id_compe")
+//    @Column(name = "id_compe")
     private Long idCompe;
 
     @Override

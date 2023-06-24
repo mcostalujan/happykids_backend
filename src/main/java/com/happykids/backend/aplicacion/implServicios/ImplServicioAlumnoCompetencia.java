@@ -5,6 +5,7 @@ import com.happykids.backend.aplicacion.implServicios.utilitarios.AlumnoUtilityS
 import com.happykids.backend.dominio.dto.AlumnoCompetenciaDTO;
 import com.happykids.backend.dominio.entidades.AlumnoCompetencia;
 import com.happykids.backend.persistencia.jpaRepositories.iRepositorioAlumnoCompetencia;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,10 +25,10 @@ public class ImplServicioAlumnoCompetencia implements iServicioAlumnoCompetencia
     }
 
     @Override
-    public AlumnoCompetencia findAlumnoCompetenciaById(Long idAprog, Long idCompe) {
-        if (idAprog != null && idCompe != null)
+    public AlumnoCompetencia findAlumnoCompetenciaByIdAcompe(Long idAcompe) {
+        if (idAcompe != null)
             return iRepositorioAlumnoCompetencia
-            .findAlumnoCompetenciaByAlumnoCompetenciaID_IdAprogAndAlumnoCompetenciaID_IdCompe(idAprog, idCompe);
+            .findAlumnoCompetenciaByIdAcompe(idAcompe);
         return null;
     }
     
@@ -45,10 +46,9 @@ public class ImplServicioAlumnoCompetencia implements iServicioAlumnoCompetencia
 
     @Override
     public AlumnoCompetencia updateAlumnoCompetencia(AlumnoCompetenciaDTO alumnoCompetenciaDTO) {
-        if (alumnoCompetenciaDTO != null && alumnoCompetenciaDTO.getIdAprog()!= null && alumnoCompetenciaDTO.getIdCompe() != null) {
-            AlumnoCompetencia alumnoCompetenciaActual = this.findAlumnoCompetenciaById(
-                    Long.valueOf(alumnoCompetenciaDTO.getIdAprog()),
-                    Long.valueOf(alumnoCompetenciaDTO.getIdCompe()));
+        if (alumnoCompetenciaDTO != null && alumnoCompetenciaDTO.getIdCompe()!= null) {
+            AlumnoCompetencia alumnoCompetenciaActual = this.
+                    findAlumnoCompetenciaByIdAcompe(NumberUtils.toLong(alumnoCompetenciaDTO.getIdAcompe()));
             if (alumnoCompetenciaActual != null) {
                 AlumnoCompetencia alumnoCompetenciaToUpdate = (AlumnoCompetencia) alumnoCompetenciaUtilityService
                         .convertDTOtoEntity(alumnoCompetenciaDTO);
