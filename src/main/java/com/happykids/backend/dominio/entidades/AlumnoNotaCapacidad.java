@@ -18,7 +18,7 @@ public class AlumnoNotaCapacidad {
     AlumnoNotaCapacidadID alumnoNotaCapacidadID;
 
     @ManyToOne
-    @MapsId("idCompe")
+    @MapsId("idAcompe")
     @JoinColumn(
             name = "acompe_id_acompe",
             referencedColumnName = "id_acompe",
