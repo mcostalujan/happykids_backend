@@ -65,7 +65,7 @@ public class AlumnoCompetenciaUtilityService implements iUtilityService {
                 .fecCreaCompe(utilityService.convertStringToDate(alumnoCompetenciaDTO.getFecCreaCompe()))
                 .usuModiCompe(alumnoCompetenciaDTO.getUsuModiCompe())
                 .fecModiCompe(utilityService.convertStringToDate(alumnoCompetenciaDTO.getFecModiCompe()))
-                .valPromLogro(Float.valueOf(alumnoCompetenciaDTO.getValPromLogro()))
+                .valPromLogro(NumberUtils.toFloat(alumnoCompetenciaDTO.getValPromLogro()))
                 .valPromLogroDesc(alumnoCompetenciaDTO.getValPromLogroDesc())
                 .indActi(Boolean.valueOf(alumnoCompetenciaDTO.getIndActi()))
                 .build();
