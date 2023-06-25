@@ -74,4 +74,7 @@ public interface iRepositorioAlumnoNotaCapacidad extends JpaRepository<AlumnoNot
             "ON PER.ID_PER = CLASE.PER_ID_PER\n" +
             "AND ACOMPE.ID_ACOMPE = ?1", nativeQuery = true)
     List<Object> getDetalleCapacidadPorAcompe(String  idAcompe);
+
+    @Query(value="{call Logica_Promedio(?1, ?2)}",nativeQuery=true)  
+    void calculoPromedioCapacidadadesPorIdClaseIdAprog(String idClase, String idAprog);
 }

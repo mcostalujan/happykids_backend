@@ -12,7 +12,11 @@ import com.happykids.backend.dominio.entidades.AlumnoNotaCapacidad;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -84,6 +88,15 @@ public class AlumnoNotaCapacidadControlador {
         return new ResponseEntity<>(alnocUpdated, OK);
     }
 
+        @PostMapping("/post/calculoPromedioCapacidadadesPorIdClaseIdAprog")
+        public void calculoPromedioCapacidadadesPorIdClaseIdAprog(
+            @ModelAttribute(value = "idAprog") String idAprog,
+            @ModelAttribute(value = "idClase") String idClase) {
+        log.info("Entrando a {} - calculoPromedioCapacidadadesPorIdClaseIdAprog",
+         this.getClass().getName());
+         iServicioAlumnoNotaCapacidad.calculoPromedioCapacidadadesPorIdClaseIdAprog(idClase, idAprog);
+
+    }
 
 //    @GetMapping("/get/clasesDocentePeriodo")
 //    public ResponseEntity<List<DetalleClasesDocente>> getClasesByDocenteAndPeriodo(@ModelAttribute(value = "idDocente") String idDocente,

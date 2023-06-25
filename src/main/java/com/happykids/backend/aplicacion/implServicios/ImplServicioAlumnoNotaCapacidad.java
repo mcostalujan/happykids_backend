@@ -13,6 +13,8 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+
 import java.util.List;
 
 @Service
@@ -86,5 +88,13 @@ public class ImplServicioAlumnoNotaCapacidad implements iServicioAlumnoNotaCapac
             }
         }
         return null;
+    }
+
+    @Override
+    public void calculoPromedioCapacidadadesPorIdClaseIdAprog(String idClase, String idAprog) {
+        log.info("Entrando a {} - calculoPromedioCapacidadadesPorIdClaseIdAprog", 
+        this.getClass().getName());
+        iRepositorioAlumnoNotaCapacidad.calculoPromedioCapacidadadesPorIdClaseIdAprog(idClase, idAprog);
+           
     }
 }

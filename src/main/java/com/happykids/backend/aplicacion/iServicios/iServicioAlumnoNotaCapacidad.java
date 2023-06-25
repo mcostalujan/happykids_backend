@@ -19,5 +19,7 @@ public interface iServicioAlumnoNotaCapacidad {
 
     AlumnoNotaCapacidad updateNotaCapa(String idAcompe, String idCapacidad, String notaCapacidad);
 
+    void calculoPromedioCapacidadadesPorIdClaseIdAprog(String idClase, String idAprog);
+
 //    List<DetalleClasesDocente> getClasesByDocenteAndPeriodo(String idDocente, String idPer);
 }
