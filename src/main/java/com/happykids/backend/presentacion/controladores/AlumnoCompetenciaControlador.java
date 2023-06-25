@@ -3,6 +3,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.happykids.backend.dominio.dto.AlumnoDTO;
+import com.happykids.backend.dominio.dto.ConsultasSQL.DetalleAlumnoCompetencia;
+import com.happykids.backend.dominio.dto.ConsultasSQL.DetalleAlumnoPorClase;
 import com.happykids.backend.dominio.entidades.AlumnoCompetencia;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +59,15 @@ public class AlumnoCompetenciaControlador{
                 .convertEntityToDTO(iServicioAlumnoCompetencia.findAlumnoCompetenciaByIdAcompe(idAcompe));
         return new ResponseEntity<>(aCompeDTO, OK);
     }
+
+    @GetMapping("/get/getDetalleACompeByIdClaseAndIdAlumno")
+    public ResponseEntity<List<DetalleAlumnoCompetencia>> getAlumnosPorClase(@ModelAttribute(value = "idClase") String idClase,
+                                                                             @ModelAttribute(value = "idAlumno") String idAlumno) {
+        log.info("Entrando a {} - getAlumnosPorClase", this.getClass().getName());
+        List<DetalleAlumnoCompetencia> detallesAlumnoCompetenciaDTO = iServicioAlumnoCompetencia.getDetalleACompeByIdClaseAndIdAlumno(idClase, idAlumno);
+        return new ResponseEntity<>(detallesAlumnoCompetenciaDTO, OK);
+    }
+
 
 }
 

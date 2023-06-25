@@ -5,6 +5,8 @@ import com.happykids.backend.aplicacion.implServicios.utilitarios.AlumnoNotaCapa
 import com.happykids.backend.dominio.dto.AlumnoNotaCapacidadDTO;
 import com.happykids.backend.dominio.dto.ClaseDocenteDTO;
 import com.happykids.backend.dominio.dto.ClaseDocenteIdDTO;
+import com.happykids.backend.dominio.dto.ConsultasSQL.DetalleAlumnoCapacidad;
+import com.happykids.backend.dominio.dto.ConsultasSQL.DetalleAlumnoCompetencia;
 import com.happykids.backend.dominio.dto.ConsultasSQL.DetalleClasesDocente;
 import com.happykids.backend.dominio.entidades.AlumnoNotaCapacidad;
 import lombok.extern.slf4j.Slf4j;
@@ -59,6 +61,27 @@ public class AlumnoNotaCapacidadControlador {
                                 NumberUtils.toLong(alumnoNotaCapacidadDTO.getIdAcompe()),
                                 NumberUtils.toLong(alumnoNotaCapacidadDTO.getIdCapacidad())));
         return new ResponseEntity<>(alumnoNotaCapaDTO, OK);
+    }
+
+    @GetMapping("/get/getDetalleCapacidadPorAcompe")
+    public ResponseEntity<List<DetalleAlumnoCapacidad>> getDetalleCapacidadPorAcompe(
+            @ModelAttribute(value = "idAcompe") String idAcompe) {
+        log.info("Entrando a {} - getAlumnosPorClase", this.getClass().getName());
+        List<DetalleAlumnoCapacidad> detallesAlumnoCapacidadDTO = iServicioAlumnoNotaCapacidad
+                .getDetalleCapacidadPorAcompe(idAcompe);
+        return new ResponseEntity<>(detallesAlumnoCapacidadDTO, OK);
+    }
+
+    @PostMapping("/post/updateNotaCapa")
+    public ResponseEntity<AlumnoNotaCapacidadDTO> updateNotaCapa(
+            @ModelAttribute(value = "idAcompe") String idAcompe,
+            @ModelAttribute(value = "idCapacidad") String idCapacidad,
+            @ModelAttribute(value = "notaCapacidad") String notaCapacidad) {
+        log.info("Entrando a {} - updateNotaCapa", this.getClass().getName());
+        AlumnoNotaCapacidadDTO alnocUpdated = (AlumnoNotaCapacidadDTO) alumnoNotaCapacidadUtilityService
+                .convertEntityToDTO(iServicioAlumnoNotaCapacidad
+                        .updateNotaCapa(idAcompe, idCapacidad, notaCapacidad));
+        return new ResponseEntity<>(alnocUpdated, OK);
     }
 
 

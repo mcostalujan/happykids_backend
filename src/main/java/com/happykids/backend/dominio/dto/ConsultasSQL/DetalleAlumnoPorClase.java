@@ -11,7 +11,7 @@ import java.util.Arrays;
 @NoArgsConstructor
 @ToString
 @Slf4j
-public class DetalleAlumnosPorClase {
+public class DetalleAlumnoPorClase {
 
 
     private String idClase;
@@ -40,11 +40,11 @@ public class DetalleAlumnosPorClase {
     private String varLastPatAlum;
     private String varLastMatAlum;
 
-    public static DetalleAlumnosPorClase convertTupleToEntity(Object queryResult) {
+    public static DetalleAlumnoPorClase convertTupleToEntity(Object queryResult) {
         log.info("Entrando a DetalleAlumnosPorClase - convertTupleToEntity");
         Object[] aux = (Object[]) queryResult;
         log.info("Object [] - {}", Arrays.stream(aux).toList());
-        return DetalleAlumnosPorClase.builder()
+        return DetalleAlumnoPorClase.builder()
                 .idClase(String.valueOf(aux[0]))
                 .codClase(String.valueOf(aux[1]))
                 .idAprog(String.valueOf(aux[2]))
