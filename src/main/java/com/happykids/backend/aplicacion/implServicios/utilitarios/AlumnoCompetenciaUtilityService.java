@@ -37,6 +37,7 @@ public class AlumnoCompetenciaUtilityService implements iUtilityService {
                 .valPromLogro(String.valueOf(alumnoCompetencia.getValPromLogro()))
                 .valPromLogroDesc(alumnoCompetencia.getValPromLogroDesc())
                 .indActi(String.valueOf(alumnoCompetencia.getIndActi()))
+                .runtime(String.valueOf(alumnoCompetencia.getRuntime()))
                 .build();
     }
 
@@ -68,6 +69,7 @@ public class AlumnoCompetenciaUtilityService implements iUtilityService {
                 .valPromLogro(NumberUtils.toFloat(alumnoCompetenciaDTO.getValPromLogro()))
                 .valPromLogroDesc(alumnoCompetenciaDTO.getValPromLogroDesc())
                 .indActi(Boolean.valueOf(alumnoCompetenciaDTO.getIndActi()))
+                .runtime(NumberUtils.toInt(alumnoCompetenciaDTO.getRuntime()))
                 .build();
     }
 }
