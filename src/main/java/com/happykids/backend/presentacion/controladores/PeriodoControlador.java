@@ -46,24 +46,30 @@ public class PeriodoControlador {
     @PutMapping("/update")
     public ResponseEntity<PeriodoDTO> editarPeriodo(@RequestBody PeriodoDTO periodoDTO) {
         PeriodoDTO periodoUpdated = (PeriodoDTO) periodoUtilityService.convertEntityToDTO(
-            this.iServicioPeriodo.editarPeriodo(periodoDTO));
+                this.iServicioPeriodo.editarPeriodo(periodoDTO));
         return new ResponseEntity<>(periodoUpdated, OK);
     }
 
     @GetMapping("/find/{idPeriodo}")
     public ResponseEntity<PeriodoDTO> buscarPeriodoPorID(@PathVariable("idPeriodo") Long idPeriodo) {
         PeriodoDTO periodoDTO = (PeriodoDTO) periodoUtilityService.convertEntityToDTO(
-            iServicioPeriodo.buscarPeriodoPorID(idPeriodo));
+                iServicioPeriodo.buscarPeriodoPorID(idPeriodo));
         return new ResponseEntity<>(periodoDTO, OK);
+    }
+
+    @GetMapping("/get/yearsDisponibles")
+    public ResponseEntity<List<Object>> getYearsDisponibles() {
+        List<Object> yearsDisponibles = iServicioPeriodo.getYearsDisponibles();
+        return new ResponseEntity<>(yearsDisponibles, OK);
     }
 
     @DeleteMapping("/delete/{idPeriodo}")
     // //@PreAuthorize("hasAnyAuthority('user:delete')")
-     public ResponseEntity<HttpResponse> eliminarPeriodoPorId(@PathVariable("idPeriodo") Long idPeriodo) {
-        if(this.iServicioPeriodo.eliminarPeriodoPorId(idPeriodo))
+    public ResponseEntity<HttpResponse> eliminarPeriodoPorId(@PathVariable("idPeriodo") Long idPeriodo) {
+        if (this.iServicioPeriodo.eliminarPeriodoPorId(idPeriodo))
             return response(OK, PERIODO_ELIMINADO_CORRECTAMENTE);
         return response(HttpStatus.OK, "ERROR AL ELMINAR PERIODO.");
-     }
+    }
 
     private ResponseEntity<HttpResponse> response(HttpStatus httpStatus, String message) {
         return new ResponseEntity<>(

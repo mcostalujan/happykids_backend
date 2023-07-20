@@ -24,5 +24,5 @@ public class AlumnoCompetenciaDTO {
     private String valPromLogro;
     private String valPromLogroDesc;
     private String indActi;
-    private String runtime;
+    private String runtimeCompe;
 }

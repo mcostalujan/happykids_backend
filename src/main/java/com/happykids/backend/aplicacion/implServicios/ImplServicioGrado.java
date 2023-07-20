@@ -1,6 +1,8 @@
 package com.happykids.backend.aplicacion.implServicios;
 
 import com.happykids.backend.aplicacion.iServicios.*;
+import com.happykids.backend.dominio.dto.ConsultasSQL.GradoDisponible;
+import com.happykids.backend.dominio.dto.ConsultasSQL.NivelDisponible;
 import com.happykids.backend.dominio.dto.GradoDTO;
 import com.happykids.backend.dominio.entidades.Grado;
 import lombok.extern.slf4j.Slf4j;
@@ -27,4 +29,14 @@ public class ImplServicioGrado implements iServicioGrado {
     public Grado buscarGradoPorId(Long idGrado) {
         return iRepositorioGrado.findGradoByIdGrado(idGrado);
     }
+
+    @Override
+    public List<GradoDisponible> getGradosDisponiblesByNivel(String idNivel) {
+        log.info("Entrando a {} - getGradosDisponiblesByNivel", this.getClass().getName());
+        return iRepositorioGrado.getGradosDisponiblesByNivel(idNivel)
+                .stream()
+                .map(GradoDisponible::convertTupleToEntity).toList();
+    }
+
+
 }

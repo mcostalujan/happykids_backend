@@ -13,4 +13,6 @@ public interface iServicioPeriodo {
     Periodo editarPeriodo(PeriodoDTO periodoDTO) ;
 
     boolean eliminarPeriodoPorId(Long idPeriodo);
+
+    List<Object> getYearsDisponibles();
 }

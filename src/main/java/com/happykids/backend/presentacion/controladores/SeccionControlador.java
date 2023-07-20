@@ -2,8 +2,12 @@ package com.happykids.backend.presentacion.controladores;
 
 import com.happykids.backend.aplicacion.iServicios.iServicioSeccion;
 import com.happykids.backend.aplicacion.implServicios.utilitarios.SeccionUtilityService;
+import com.happykids.backend.dominio.dto.ConsultasSQL.GradoDisponible;
+import com.happykids.backend.dominio.dto.ConsultasSQL.SeccionDisponible;
 import com.happykids.backend.dominio.dto.SeccionDTO;
+import com.happykids.backend.dominio.entidades.Seccion;
 import com.happykids.backend.dominio.entidades.utilitarios.HttpResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +20,7 @@ import static org.springframework.http.HttpStatus.OK;
 
 @RequestMapping("/seccion")
 @RestController
+@Slf4j
 public class SeccionControlador {
 
     public static final String SECCION_ELIMINADA_CORRECTAMENTE = "Seccion eliminada.";
@@ -60,7 +65,7 @@ public class SeccionControlador {
     //@PreAuthorize("hasAnyAuthority('user:delete')")
     public ResponseEntity<HttpResponse> eliminarSeccionPorId(@PathVariable("idSeccion") Long idSeccion) {
         if (this.iServicioSeccion.deleteSeccion(idSeccion))
-        return response(OK, SECCION_ELIMINADA_CORRECTAMENTE);
+            return response(OK, SECCION_ELIMINADA_CORRECTAMENTE);
         return response(HttpStatus.OK, "ERROR AL ELMINAR SECCION.");
     }
 
@@ -68,6 +73,17 @@ public class SeccionControlador {
         return new ResponseEntity<>(
                 new HttpResponse(httpStatus.value(), httpStatus, httpStatus.getReasonPhrase().toUpperCase(), message),
                 httpStatus);
+    }
+
+
+    @GetMapping("/get/getSeccionesDisponiblesByNivelAndGrado")
+    public ResponseEntity<List<SeccionDisponible>> getSeccionesDisponiblesByNivelAndGrado(
+            @ModelAttribute(value = "idNivel") String idNivel,
+            @ModelAttribute(value = "idGrado") String idGrado
+    ) {
+        log.info("Entrando a {} - getSeccionesDisponiblesByNivelAndGrado", this.getClass().getName());
+        List<SeccionDisponible> seccionesDisponibles = iServicioSeccion.getSeccionesDisponiblesByNivelAndGrado(idNivel, idGrado);
+        return new ResponseEntity<>(seccionesDisponibles, OK);
     }
 
 }

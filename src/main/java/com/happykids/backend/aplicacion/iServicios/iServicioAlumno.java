@@ -2,6 +2,7 @@ package com.happykids.backend.aplicacion.iServicios;
 import java.util.List;
 
 import com.happykids.backend.dominio.dto.AlumnoDTO;
+import com.happykids.backend.dominio.dto.ConsultasSQL.DetalleAlumnoReporteAnual;
 import com.happykids.backend.dominio.entidades.Alumno;
 public interface iServicioAlumno {
 
@@ -12,8 +13,10 @@ public interface iServicioAlumno {
     Alumno agregarAlumno(AlumnoDTO alumnoDTO);
 
     Alumno editarAlumno(AlumnoDTO alumnoDTO) ;
-    
+
     boolean eliminarAlumnoPorId(Long idAlumno) ;
+
+    List<DetalleAlumnoReporteAnual> getAlumnosByParamsReporteAnual(String idNivel, String idGrado, String idSeccion, String year);
 }
 
 

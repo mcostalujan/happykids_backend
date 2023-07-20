@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.1.final using JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InformeAcademicoAlumno_AreasCompe" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8e928572-19a8-4f6c-951c-935282264376">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="TesisDB2023_01"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="ID_APROG_MAIN" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[new Long(1L)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ID_AREA_MAIN" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[new Long(1L)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ID_ALUM_MAIN" class="java.lang.Long"/>
+	<parameter name="YEAR" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+COMPE.ID_COMPE,
+COMPE.CODIGO_COMPE,
+COMPE.DESC_COMPE,
+ROUND(ACOMPE.VAL_PROM_LOGRO,2) VAL_PROM_LOGRO,
+ISNULL(ACOMPE.VAL_PROM_LOGRO_DESC, '') VAL_PROM_LOGRO_DESC
+FROM DBO.ALUMNO ALUM
+INNER JOIN DBO.ALUM_PROG APROG
+ON APROG.ALUM_ID_ALUM = ALUM.ID_ALUM
+INNER JOIN DBO.CLASE CLASE
+ON APROG.CLASE_ID_CLASE = CLASE.ID_CLASE
+INNER JOIN DBO.SECCION SECCI
+ON CLASE.SECCI_ID_SECCI = SECCI.ID_SECCI
+INNER JOIN DBO.GRADO GRADO
+ON GRADO.ID_GRADO = SECCI.GRADO_ID_GRADO
+INNER JOIN PERIODO PER
+ON CLASE.PER_ID_PER = PER.ID_PER
+INNER JOIN DBO.AREA AREA
+ON CLASE.AREA_ID_AREA = AREA.ID_AREA
+INNER JOIN DBO.COMPETENCIA COMPE
+ON COMPE.AREA_ID_AREA = AREA.ID_AREA
+INNER JOIN DBO.ALUM_COMPE ACOMPE
+ON ACOMPE.COMPE_ID_COMPE = COMPE.ID_COMPE
+AND PER.ID_PER IN (SELECT PER.ID_PER FROM DBO.PERIODO PER WHERE CAST(YEAR(PER.FEC_INI_ACTI_PER) AS VARCHAR(5)) = $P{YEAR})
+AND ALUM.ID_ALUM = $P{ID_ALUM_MAIN}
+AND ACOMPE.APROG_ID_APROG = $P{ID_APROG_MAIN}
+AND AREA.ID_AREA = $P{ID_AREA_MAIN}]]>
+	</queryString>
+	<field name="ID_COMPE" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="ID_COMPE"/>
+		<property name="com.jaspersoft.studio.field.label" value="ID_COMPE"/>
+	</field>
+	<field name="CODIGO_COMPE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CODIGO_COMPE"/>
+		<property name="com.jaspersoft.studio.field.label" value="CODIGO_COMPE"/>
+	</field>
+	<field name="DESC_COMPE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="DESC_COMPE"/>
+		<property name="com.jaspersoft.studio.field.label" value="DESC_COMPE"/>
+	</field>
+	<field name="VAL_PROM_LOGRO" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="VAL_PROM_LOGRO"/>
+		<property name="com.jaspersoft.studio.field.label" value="VAL_PROM_LOGRO"/>
+	</field>
+	<field name="VAL_PROM_LOGRO_DESC" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="VAL_PROM_LOGRO_DESC"/>
+		<property name="com.jaspersoft.studio.field.label" value="VAL_PROM_LOGRO_DESC"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField textAdjust="StretchHeight">
+				<reportElement positionType="Float" x="0" y="0" width="154" height="40" uuid="f5dd875c-11ab-4ab2-8d2d-b7e997460db2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3a304aad-107a-4a3f-9be9-d9e8e280f94b"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#050505"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DESC_COMPE}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement positionType="Float" x="154" y="0" width="40" height="40" uuid="2826281a-d50f-4273-ab15-2a342b62891d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3a304aad-107a-4a3f-9be9-d9e8e280f94b"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#050505"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VAL_PROM_LOGRO_DESC}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement positionType="Float" x="194" y="0" width="40" height="40" uuid="ea32ab80-5df9-4985-a0e6-a62a25794126">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3a304aad-107a-4a3f-9be9-d9e8e280f94b"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#050505"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement positionType="Float" x="234" y="0" width="40" height="40" uuid="b2358a49-316c-46de-aed2-2c94f2970008">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3a304aad-107a-4a3f-9be9-d9e8e280f94b"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#050505"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement positionType="Float" x="274" y="0" width="40" height="40" uuid="028a7bc8-384d-4508-8644-7682b9c4a07b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3a304aad-107a-4a3f-9be9-d9e8e280f94b"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#050505"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement positionType="Float" x="314" y="0" width="120" height="40" uuid="e879b142-612f-46a6-85b3-e95d28df90de">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3a304aad-107a-4a3f-9be9-d9e8e280f94b"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#050505"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" "]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

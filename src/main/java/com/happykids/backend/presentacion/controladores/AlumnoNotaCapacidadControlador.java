@@ -88,13 +88,14 @@ public class AlumnoNotaCapacidadControlador {
         return new ResponseEntity<>(alnocUpdated, OK);
     }
 
-        @PostMapping("/post/calculoPromedioCapacidadadesPorIdClaseIdAprog")
+        @PostMapping("/post/calculoPromedioCapacidadadesPorIdClaseIdAprog/{idClase}/{idAprog}/{usuarioModi}")
         public void calculoPromedioCapacidadadesPorIdClaseIdAprog(
-            @ModelAttribute(value = "idAprog") String idAprog,
-            @ModelAttribute(value = "idClase") String idClase) {
-        log.info("Entrando a {} - calculoPromedioCapacidadadesPorIdClaseIdAprog",
-         this.getClass().getName());
-         iServicioAlumnoNotaCapacidad.calculoPromedioCapacidadadesPorIdClaseIdAprog(idClase, idAprog);
+            @PathVariable(value = "idAprog") String idAprog,
+            @PathVariable(value = "idClase") String idClase,
+            @PathVariable(value = "usuarioModi") String usuarioModi) {
+        log.info("Entrando a {} - calculoPromedioCapacidadadesPorIdClaseIdAprog", this.getClass().getName());
+            log.info("idAprog: {}, idClase: {}, usuarioModi: {}", idAprog, idClase, usuarioModi);
+         iServicioAlumnoNotaCapacidad.calculoPromedioCapacidadadesPorIdClaseIdAprog(idClase, idAprog, usuarioModi);
 
     }
 

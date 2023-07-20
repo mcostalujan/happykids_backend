@@ -91,10 +91,10 @@ public class ImplServicioAlumnoNotaCapacidad implements iServicioAlumnoNotaCapac
     }
 
     @Override
-    public void calculoPromedioCapacidadadesPorIdClaseIdAprog(String idClase, String idAprog) {
+    public void calculoPromedioCapacidadadesPorIdClaseIdAprog(String idClase, String idAprog, String usuarioModi) {
         log.info("Entrando a {} - calculoPromedioCapacidadadesPorIdClaseIdAprog", 
         this.getClass().getName());
-        iRepositorioAlumnoNotaCapacidad.calculoPromedioCapacidadadesPorIdClaseIdAprog(idClase, idAprog);
+        iRepositorioAlumnoNotaCapacidad.calculoPromedioCapacidadadesPorIdClaseIdAprog(idClase, idAprog, usuarioModi);
            
     }
 }

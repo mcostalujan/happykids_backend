@@ -48,6 +48,7 @@ public class AlumnoProgresoUtilityService implements iUtilityService {
                 .fecCreaAlumprog(utilityService.convertDateToString(alumnoProgreso.getFecCreaAlumprog()))
                 .usuModiAlumprog(alumnoProgreso.getUsuModiAlumprog())
                 .fecModiAlmprog(utilityService.convertDateToString(alumnoProgreso.getFecModiAlmprog()))
+                .runtime(alumnoProgreso.getRuntime())
                 .build();
     }
 
@@ -67,6 +68,7 @@ public class AlumnoProgresoUtilityService implements iUtilityService {
                 .fecCreaAlumprog(utilityService.convertStringToDate(alumnoProgresoDTO.getFecCreaAlumprog()))
                 .usuModiAlumprog(alumnoProgresoDTO.getUsuModiAlumprog())
                 .fecModiAlmprog(utilityService.convertStringToDate(alumnoProgresoDTO.getFecModiAlmprog()))
+                .runtime(alumnoProgresoDTO.getRuntime())
                 .build();
     }
 }

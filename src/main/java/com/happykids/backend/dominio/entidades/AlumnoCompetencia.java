@@ -67,6 +67,6 @@ public class AlumnoCompetencia {
     @Column(name = "val_prom_logro_desc")
     private String valPromLogroDesc;
     
-    @Column(name = "runtime")
-    private Integer runtime;
+    @Column(name = "runtime_compe")
+    private String runtimeCompe;
 }

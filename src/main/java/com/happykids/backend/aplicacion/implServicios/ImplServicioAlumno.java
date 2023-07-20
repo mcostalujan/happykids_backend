@@ -3,6 +3,8 @@ package com.happykids.backend.aplicacion.implServicios;
 import com.happykids.backend.aplicacion.iServicios.iServicioAlumno;
 import com.happykids.backend.aplicacion.implServicios.utilitarios.AlumnoUtilityService;
 import com.happykids.backend.dominio.dto.AlumnoDTO;
+import com.happykids.backend.dominio.dto.ConsultasSQL.DetalleAlumnoReporteAnual;
+import com.happykids.backend.dominio.dto.ConsultasSQL.GradoDisponible;
 import com.happykids.backend.dominio.entidades.Alumno;
 import com.happykids.backend.persistencia.jpaRepositories.iRepositorioAlumno;
 import lombok.extern.slf4j.Slf4j;
@@ -66,5 +68,13 @@ public class ImplServicioAlumno implements iServicioAlumno {
             }
         }
         return false;
+    }
+
+    @Override
+    public List<DetalleAlumnoReporteAnual> getAlumnosByParamsReporteAnual(String idNivel, String idGrado, String idSeccion, String year) {
+        log.info("Entrando a {} - getAlumnosByParamsReporteAnual", this.getClass().getName());
+        return iRepositorioAlumno.getAlumnosByParamsReporteAnual(idNivel, idGrado, idSeccion, year)
+                .stream()
+                .map(DetalleAlumnoReporteAnual::convertTupleToEntity).toList();
     }
 }

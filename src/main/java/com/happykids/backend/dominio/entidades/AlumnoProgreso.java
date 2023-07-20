@@ -86,5 +86,9 @@ public class AlumnoProgreso {
             foreignKey = @ForeignKey(name = "aprog_clase_id_clase_fk")
     )
     private Clase clase;
+
+
+    @Column(name = "runtime")
+    private String runtime;
 }
 

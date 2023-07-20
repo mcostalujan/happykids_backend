@@ -2,6 +2,7 @@ package com.happykids.backend.presentacion.controladores;
 
 import com.happykids.backend.aplicacion.iServicios.iServicioNivel;
 import com.happykids.backend.aplicacion.implServicios.utilitarios.NivelUtilityService;
+import com.happykids.backend.dominio.dto.ConsultasSQL.NivelDisponible;
 import com.happykids.backend.dominio.dto.NivelDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,13 @@ public class NivelControlador {
         log.info("Entrando a {} - buscarNivelPorID", this.getClass().getName());
         NivelDTO nivelDTO = (NivelDTO) nivelUtilityService.convertEntityToDTO(iServicioNivel.findNivel(idNivel));
         return new ResponseEntity<>(nivelDTO, OK);
+    }
+
+    @GetMapping("/get/nivelesDisponibles")
+    public ResponseEntity<List<NivelDisponible>> getnivelesDisponibles() {
+        log.info("Entrando a {} - getnivelesDisponibles", this.getClass().getName());
+        List<NivelDisponible> nivelesDTO = iServicioNivel.getNivelesDisponibles();
+        return new ResponseEntity<>(nivelesDTO, OK);
     }
 
 }

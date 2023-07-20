@@ -3,6 +3,8 @@ package com.happykids.backend.presentacion.controladores;
 import com.happykids.backend.aplicacion.iServicios.iServicioAlumno;
 import com.happykids.backend.aplicacion.implServicios.utilitarios.AlumnoUtilityService;
 import com.happykids.backend.dominio.dto.AlumnoDTO;
+import com.happykids.backend.dominio.dto.ConsultasSQL.DetalleAlumnoReporteAnual;
+import com.happykids.backend.dominio.dto.ConsultasSQL.GradoDisponible;
 import com.happykids.backend.dominio.entidades.utilitarios.HttpResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +74,19 @@ public class AlumnoControlador {
         return new ResponseEntity<>(
                 new HttpResponse(httpStatus.value(), httpStatus, httpStatus.getReasonPhrase().toUpperCase(), message),
                 httpStatus);
+    }
+
+    @GetMapping("/get/getAlumnosByParamsReporteAnual")
+    public ResponseEntity<List<DetalleAlumnoReporteAnual>> getAlumnosByParamsReporteAnual(
+            @ModelAttribute(value = "idNivel") String idNivel,
+            @ModelAttribute(value = "idGrado") String idGrado,
+            @ModelAttribute(value = "idSeccion") String idSeccion,
+            @ModelAttribute(value = "year") String year
+    ) {
+        log.info("Entrando a {} - getnivelesDisponibles", this.getClass().getName());
+        List<DetalleAlumnoReporteAnual> alumnos = iServicioAlumno
+                .getAlumnosByParamsReporteAnual(idNivel, idGrado, idSeccion, year);
+        return new ResponseEntity<>(alumnos, OK);
     }
 
 }

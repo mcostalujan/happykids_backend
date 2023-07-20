@@ -67,4 +67,11 @@ public class ImplServicioPeriodo implements iServicioPeriodo {
         }
         return false;
     }
+
+    @Override
+    public List<Object> getYearsDisponibles() {
+        return this.iRepositorioPeriodo.getYearsDisponibles();
+    }
+
+
 }

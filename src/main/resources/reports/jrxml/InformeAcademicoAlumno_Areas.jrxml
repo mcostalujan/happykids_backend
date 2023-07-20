@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.1.final using JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InformeAcademicoAlumno_Areas" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="7851d3dc-3857-4e1f-8fa9-559a4b812424">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="TesisDB2023_01"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="ID_ALUM_MAIN" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[new Long(1L)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="subReport_Areas_Compe" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="YEAR" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+AREA.ID_AREA,
+AREA.COD_AREA,
+AREA.AREA_DESC,
+APROG.ID_APROG
+FROM DBO.ALUMNO ALUM
+INNER JOIN DBO.ALUM_PROG APROG
+ON APROG.ALUM_ID_ALUM = ALUM.ID_ALUM
+INNER JOIN DBO.CLASE CLASE
+ON APROG.CLASE_ID_CLASE = CLASE.ID_CLASE
+INNER JOIN DBO.SECCION SECCI
+ON CLASE.SECCI_ID_SECCI = SECCI.ID_SECCI
+INNER JOIN DBO.GRADO GRADO
+ON GRADO.ID_GRADO = SECCI.GRADO_ID_GRADO
+INNER JOIN PERIODO PER
+ON CLASE.PER_ID_PER = PER.ID_PER
+INNER JOIN DBO.AREA AREA
+ON CLASE.AREA_ID_AREA = AREA.ID_AREA
+AND PER.ID_PER IN (SELECT PER.ID_PER FROM DBO.PERIODO PER WHERE CAST(YEAR(PER.FEC_INI_ACTI_PER) AS VARCHAR(5)) = $P{YEAR})
+AND ALUM.ID_ALUM = $P{ID_ALUM_MAIN}
+]]>
+	</queryString>
+	<field name="ID_AREA" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="ID_AREA"/>
+		<property name="com.jaspersoft.studio.field.label" value="ID_AREA"/>
+	</field>
+	<field name="COD_AREA" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="COD_AREA"/>
+		<property name="com.jaspersoft.studio.field.label" value="COD_AREA"/>
+	</field>
+	<field name="AREA_DESC" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="AREA_DESC"/>
+		<property name="com.jaspersoft.studio.field.label" value="AREA_DESC"/>
+	</field>
+	<field name="ID_APROG" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="ID_APROG"/>
+		<property name="com.jaspersoft.studio.field.label" value="ID_APROG"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="60" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField textAdjust="StretchHeight">
+				<reportElement stretchType="ContainerHeight" x="0" y="0" width="100" height="60" uuid="4b9ccebc-68b6-449a-869c-fd7345d2bfee">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3a304aad-107a-4a3f-9be9-d9e8e280f94b"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#050505"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AREA_DESC}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement stretchType="ElementGroupHeight" x="100" y="0" width="455" height="60" uuid="131714cd-0937-4540-a60b-4a7718e16b29"/>
+				<subreportParameter name="ID_APROG_MAIN">
+					<subreportParameterExpression><![CDATA[$F{ID_APROG}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID_AREA_MAIN">
+					<subreportParameterExpression><![CDATA[$F{ID_AREA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="YEAR">
+					<subreportParameterExpression><![CDATA[$P{YEAR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID_ALUM_MAIN">
+					<subreportParameterExpression><![CDATA[$P{ID_ALUM_MAIN}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{subReport_Areas_Compe}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

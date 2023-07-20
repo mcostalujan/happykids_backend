@@ -2,6 +2,8 @@ package com.happykids.backend.aplicacion.implServicios;
 
 import com.happykids.backend.aplicacion.iServicios.*;
 import com.happykids.backend.aplicacion.implServicios.utilitarios.SeccionUtilityService;
+import com.happykids.backend.dominio.dto.ConsultasSQL.NivelDisponible;
+import com.happykids.backend.dominio.dto.ConsultasSQL.SeccionDisponible;
 import com.happykids.backend.dominio.dto.SeccionDTO;
 import com.happykids.backend.dominio.entidades.Nota;
 import com.happykids.backend.dominio.entidades.Seccion;
@@ -66,5 +68,13 @@ public class ImplServicioSeccion implements iServicioSeccion {
             }
         }
         return false;
+    }
+
+    @Override
+    public List<SeccionDisponible> getSeccionesDisponiblesByNivelAndGrado(String idNivel, String idGrado) {
+        log.info("Entrando a {} - getSeccionesDisponiblesByNivelAndGrado", this.getClass().getName());
+        return iRepositorioSeccion.getSeccionesDisponiblesByNivelAndGrado(idNivel, idGrado)
+                .stream()
+                .map(SeccionDisponible::convertTupleToEntity).toList();
     }
 }

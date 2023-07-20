@@ -30,4 +30,6 @@ public class AlumnoProgresoDTO {
     private String usuModiAlumprog;
     private String fecModiAlmprog;
 
+    private String runtime;
+
 }
