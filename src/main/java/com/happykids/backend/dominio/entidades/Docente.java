@@ -57,4 +57,7 @@ public class Docente {
     @Column(name = "fec_modi_doc")
     private Date fecModiDoc;
 
+    @Column(name = "ind_elim")
+    private Boolean indElim;
+
 }

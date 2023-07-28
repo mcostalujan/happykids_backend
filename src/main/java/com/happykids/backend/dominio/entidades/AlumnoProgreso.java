@@ -90,5 +90,9 @@ public class AlumnoProgreso {
 
     @Column(name = "runtime")
     private String runtime;
+
+    @Column(name = "ind_elim")
+    private Boolean indElim;
+
 }
 

@@ -39,4 +39,11 @@ public class Nivel {
     @Column(name = "fec_modi_nive")
     private Date fecModiNive;
 
+
+    @Column(name = "ind_acti")
+    private Boolean indActi;
+
+    @Column(name = "ind_elim")
+    private Boolean indElim;
+
 }

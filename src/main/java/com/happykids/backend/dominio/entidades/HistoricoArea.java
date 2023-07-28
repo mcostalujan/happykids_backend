@@ -9,22 +9,32 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Entity(name = "Area")
-@Table(name = "area")
+@Entity(name = "HistoricoArea")
+@Table(name = "histo_area")
 @Builder
-public class Area {
+public class HistoricoArea {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_area", updatable = false)
-    private Long idArea;
+    @Column(name = "id_area_histo", updatable = false)
+    private Long idAreaHisto;
+
+    @ManyToOne
+    @JoinColumn(
+            name = "area_id_area",
+            nullable = false,
+            referencedColumnName = "id_area",
+            foreignKey = @ForeignKey(name = "histoarea_area_id_area_fk")
+    )
+    private Area area;
 
     @ManyToOne
     @JoinColumn(
             name = "nive_id_nive",
             nullable = false,
             referencedColumnName = "id_nive",
-            foreignKey = @ForeignKey(name = "area_nive_id_nive_fk")
+            foreignKey = @ForeignKey(name = "histoarea_nive_id_nive_fk")
     )
     private Nivel nivel;
 
@@ -46,11 +56,16 @@ public class Area {
     @Column(name = "fec_modi_area")
     private Date fecModiArea;
 
-
     @Column(name = "ind_acti")
     private Boolean indActi;
 
     @Column(name = "ind_elim")
     private Boolean indElim;
+
+    @Column(name = "fec_reg_histo")
+    private Date fecRegHisto;
+
+    @Column(name = "update_id")
+    private Integer updateID;
 
 }

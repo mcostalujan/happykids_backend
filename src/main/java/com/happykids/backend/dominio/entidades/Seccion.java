@@ -47,4 +47,10 @@ public class Seccion {
     @Column(name = "fec_modi_secci")
     private Date fecModiSecci;
 
+    @Column(name = "ind_acti")
+    private Boolean indActi;
+
+    @Column(name = "ind_elim")
+    private Boolean indElim;
+
 }

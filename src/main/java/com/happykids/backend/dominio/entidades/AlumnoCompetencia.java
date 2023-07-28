@@ -69,4 +69,8 @@ public class AlumnoCompetencia {
     
     @Column(name = "runtime_compe")
     private String runtimeCompe;
+
+
+    @Column(name = "ind_elim")
+    private Boolean indElim;
 }

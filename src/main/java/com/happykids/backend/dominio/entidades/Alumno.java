@@ -59,4 +59,8 @@ public class Alumno {
     private Date fecModiAlum;
 
 
+
+    @Column(name = "ind_elim")
+    private Boolean indElim;
+
 }

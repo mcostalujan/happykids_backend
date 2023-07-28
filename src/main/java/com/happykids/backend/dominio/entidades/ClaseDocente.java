@@ -39,6 +39,8 @@ public class ClaseDocente {
 
     private Boolean indActi;
 
+    private Boolean indElim;
+
     private String usuCreaCladoc;
 
     private Date fecCreaCladoc;

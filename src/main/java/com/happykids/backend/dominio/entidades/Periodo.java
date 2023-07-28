@@ -45,4 +45,10 @@ public class Periodo {
 
     @Column(name = "fec_modi_per")
     private Date fecModiPer;
+
+    @Column(name = "ind_acti")
+    private Boolean indActi;
+
+    @Column(name = "ind_elim")
+    private Boolean indElim;
 }

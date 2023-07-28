@@ -55,4 +55,10 @@ public class Grado {
     @Column(name = "fec_modi_grado")
     private Date fecModiGrado;
 
+
+    @Column(name = "ind_acti")
+    private Boolean indActi;
+
+    @Column(name = "ind_elim")
+    private Boolean indElim;
 }
